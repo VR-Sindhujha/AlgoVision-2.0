@@ -282,7 +282,9 @@ def create_database():
 
             priority TEXT,
 
-            delivery_speed TEXT
+            delivery_speed TEXT,
+
+            status TEXT
 
         )
 
@@ -533,7 +535,11 @@ def home():
 
         "home.html"
     )
+# =========================
+# REVIEWS STORAGE
+# =========================
 
+reviews_db = []
 
 # =========================
 # PRODUCT PAGE
@@ -552,6 +558,44 @@ def product(product_name):
 
         return "Product Not Found"
 
+
+    # PRODUCT REVIEWS
+
+    product_reviews = []
+
+    for review in reviews_db:
+
+        if review["product"] == product_name:
+
+            product_reviews.append(review)
+
+
+    # TOTAL REVIEWS
+
+    total_reviews = len(product_reviews)
+
+
+    # AVERAGE RATING
+
+    average_rating = 0
+
+
+    if total_reviews > 0:
+
+        total = 0
+
+        for review in product_reviews:
+
+            total += int(review["rating"])
+
+        average_rating = round(
+
+            total / total_reviews,
+
+            1
+        )
+
+
     return render_template(
 
         "product.html",
@@ -566,9 +610,14 @@ def product(product_name):
 
         price=selected_product["price"],
 
-        route_name=product_name
-    )
+        route_name=product_name,
 
+        reviews=reviews_db,
+
+        average_rating=average_rating,
+
+        total_reviews=total_reviews
+    )
 
 # =========================
 # ORDER PAGE
@@ -629,11 +678,13 @@ def order(product_name):
 
                 priority,
 
-                delivery_speed
+                delivery_speed,
+
+                status
 
             )
 
-            VALUES (?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?)
 
         """, (
 
@@ -645,7 +696,9 @@ def order(product_name):
 
             priority,
 
-            delivery_speed
+            delivery_speed,
+
+            "Ordered"
 
         ))
 
@@ -750,7 +803,9 @@ def add_to_cart(product_name):
 
         "price": selected_product["price"],
 
-        "image": selected_product["image"]
+        "image": selected_product["image"],
+
+        "quantity": 1
     })
 
     session["cart"] = cart
@@ -779,7 +834,9 @@ def cart():
 
         price = str(price).replace(",", "")
 
-        total += int(price)
+        quantity = item.get("quantity", 1)
+
+        total += int(price) * quantity
 
     return render_template(
 
@@ -812,6 +869,49 @@ def remove_from_cart(item_id):
 
     return redirect("/cart")
 
+# =========================
+# INCREASE QUANTITY
+# =========================
+
+@app.route("/increase-quantity/<int:item_id>")
+def increase_quantity(item_id):
+
+    cart = session.get("cart", [])
+
+    for item in cart:
+
+        if item["id"] == item_id:
+
+            item["quantity"] = item.get("quantity", 1) + 1
+
+    session["cart"] = cart
+
+    return redirect("/cart")
+
+
+# =========================
+# DECREASE QUANTITY
+# =========================
+
+@app.route("/decrease-quantity/<int:item_id>")
+def decrease_quantity(item_id):
+
+    cart = session.get("cart", [])
+
+    for item in cart:
+
+        if item["id"] == item_id:
+
+            quantity = item.get("quantity", 1)
+
+            if quantity > 1:
+
+                item["quantity"] = quantity - 1
+
+    session["cart"] = cart
+
+    return redirect("/cart")
+    
 # =========================
 # ADD TO WISHLIST
 # =========================
@@ -1429,11 +1529,41 @@ def success():
         "success.html"
     )
 
+# =========================
+# UPDATE STATUS
+# =========================
+
+@app.route("/update-status/<int:order_id>/<new_status>")
+def update_status(order_id, new_status):
+
+    connection = sqlite3.connect("algo.db")
+
+    cursor = connection.cursor()
+
+    cursor.execute("""
+
+        UPDATE orders
+
+        SET status=?
+
+        WHERE id=?
+
+    """, (
+
+        new_status,
+
+        order_id
+    ))
+
+    connection.commit()
+
+    connection.close()
+
+    return redirect("/tracking")
 
 # =========================
 # TRACKING PAGE
 # =========================
-
 @app.route("/tracking")
 def tracking():
 
@@ -1441,12 +1571,30 @@ def tracking():
 
         return redirect("/login")
 
+
+    connection = sqlite3.connect("algo.db")
+
+    cursor = connection.cursor()
+
+    cursor.execute("""
+
+        SELECT * FROM orders
+
+        ORDER BY id DESC
+
+    """)
+
+    orders = cursor.fetchall()
+
+    connection.close()
+
+
     return render_template(
 
-        "tracking.html"
+        "tracking.html",
+
+        orders=orders
     )
-
-
 # =========================
 # DASHBOARD
 # =========================
@@ -1608,6 +1756,35 @@ def dashboard():
 # RUN APP
 # =========================
 
+# =========================
+# ADD REVIEW
+# =========================
+
+@app.route("/add-review/<product_name>", methods=["POST"])
+def add_review(product_name):
+
+    if "user" not in session:
+
+        return redirect("/login")
+
+    username = session["user"]
+
+    review_text = request.form["review"]
+
+    rating = request.form["rating"]
+
+    reviews_db.append({
+
+        "user": username,
+
+        "product": product_name,
+
+        "review": review_text,
+
+        "rating": rating
+    })
+
+    return redirect(f"/product/{product_name}")
 if __name__ == "__main__":
 
     socketio.run(app, debug=True)

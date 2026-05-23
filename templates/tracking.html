@@ -10,12 +10,11 @@
     content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Order Tracking</title>
+    <title>
 
-    <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-    >
+        Live Tracking
+
+    </title>
 
     <link
     rel="stylesheet"
@@ -32,203 +31,119 @@
 
         <div class="logo">
 
-            Order Tracking 🚚
+            ALGO 🚀
 
         </div>
 
     </div>
 
 
-    <!-- TRACKING PAGE -->
+    <!-- TRACKING SECTION -->
 
-    <section class="tracking-page">
+    <section class="tracking-section">
+
+        <h1>
+
+            Live Order Tracking 🚚
+
+        </h1>
+
+
+        {% for order in orders %}
 
         <div class="tracking-card">
 
-            <h1>
+            <h2>
 
-                Your Order Status 📦
+                {{ order[2] }}
 
-            </h1>
+            </h2>
 
             <p>
 
-                Order is moving through our
-                intelligent logistics network.
+                <strong>Customer:</strong>
+
+                {{ order[1] }}
+
+            </p>
+
+            <p>
+
+                <strong>Destination:</strong>
+
+                {{ order[3] }}
+
+            </p>
+
+            <p>
+
+                <strong>Status:</strong>
+
+                {{ order[6] }}
 
             </p>
 
 
-            <!-- TRACKER -->
+            <!-- STATUS BUTTONS -->
 
-            <div class="tracker">
+            <div class="status-buttons">
 
+                <a
+                href="/update-status/{{ order[0] }}/Packed"
+                >
 
-                <!-- STEP 1 -->
+                    <button>
 
-                <div class="track-step active">
+                        Packed 📦
 
-                    <div class="circle">
+                    </button>
 
-                        ✓
+                </a>
 
-                    </div>
 
-                    <span>
+                <a
+                href="/update-status/{{ order[0] }}/Shipped"
+                >
 
-                        Ordered
+                    <button>
 
-                    </span>
+                        Shipped 🚚
 
-                </div>
+                    </button>
 
+                </a>
 
-                <!-- LINE -->
 
-                <div class="track-line active-line"></div>
+                <a
+                href="/update-status/{{ order[0] }}/Out for Delivery"
+                >
 
+                    <button>
 
-                <!-- STEP 2 -->
+                        Out for Delivery 🛵
 
-                <div class="track-step active">
+                    </button>
 
-                    <div class="circle">
+                </a>
 
-                        ✓
 
-                    </div>
+                <a
+                href="/update-status/{{ order[0] }}/Delivered"
+                >
 
-                    <span>
+                    <button>
 
-                        Packed
+                        Delivered ✅
 
-                    </span>
+                    </button>
 
-                </div>
-
-
-                <!-- LINE -->
-
-                <div class="track-line active-line"></div>
-
-
-                <!-- STEP 3 -->
-
-                <div class="track-step active">
-
-                    <div class="circle">
-
-                        ✓
-
-                    </div>
-
-                    <span>
-
-                        Shipped
-
-                    </span>
-
-                </div>
-
-
-                <!-- LINE -->
-
-                <div class="track-line"></div>
-
-
-                <!-- STEP 4 -->
-
-                <div class="track-step">
-
-                    <div class="circle">
-
-                        4
-
-                    </div>
-
-                    <span>
-
-                        Out for Delivery
-
-                    </span>
-
-                </div>
-
-
-                <!-- LINE -->
-
-                <div class="track-line"></div>
-
-
-                <!-- STEP 5 -->
-
-                <div class="track-step">
-
-                    <div class="circle">
-
-                        5
-
-                    </div>
-
-                    <span>
-
-                        Delivered
-
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <!-- ETA -->
-
-            <div class="eta-box">
-
-                🚀 Estimated Delivery:
-                <strong>
-
-                    12 Minutes
-
-                </strong>
-
-            </div>
-
-
-            <!-- DRIVER -->
-
-            <div class="driver-box">
-
-                <h2>
-
-                    Assigned Driver 👨‍✈️
-
-                </h2>
-
-                <p>
-
-                    Name:
-                    Arjun Kumar
-
-                </p>
-
-                <p>
-
-                    Vehicle:
-                    TN 09 AB 4321
-
-                </p>
-
-                <p>
-
-                    Rating:
-                    ⭐ 4.9
-
-                </p>
+                </a>
 
             </div>
 
         </div>
+
+        {% endfor %}
 
     </section>
 

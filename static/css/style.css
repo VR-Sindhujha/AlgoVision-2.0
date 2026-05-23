@@ -3555,3 +3555,270 @@ body {
     box-shadow:
     0 0 40px rgba(0,212,255,0.1);
 }
+/* =========================
+   REVIEW SECTION
+========================= */
+
+.review-section {
+
+    width: 90%;
+
+    margin: 60px auto;
+
+    padding: 30px;
+
+    background: rgba(255,255,255,0.05);
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(10px);
+
+}
+
+
+.review-section h2 {
+
+    color: white;
+
+    margin-bottom: 25px;
+
+    font-size: 32px;
+
+}
+
+
+.review-form {
+
+    display: flex;
+
+    gap: 15px;
+
+    margin-bottom: 40px;
+
+    flex-wrap: wrap;
+}
+
+
+.review-form input {
+
+    flex: 1;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+}
+
+
+.review-form select {
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    border: none;
+}
+
+
+.review-form button {
+
+    padding: 15px 25px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: cyan;
+
+    color: black;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.review-form button:hover {
+
+    transform: scale(1.05);
+}
+
+
+.review-card {
+
+    background: rgba(255,255,255,0.08);
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    margin-bottom: 20px;
+
+    color: white;
+}
+
+
+.review-card h4 {
+
+    color: cyan;
+
+    margin-bottom: 10px;
+}
+
+.tracking-card {
+
+    background: rgba(255,255,255,0.08);
+
+    margin: 25px;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    color: white;
+}
+
+/* =========================
+   TRACKING PAGE
+========================= */
+
+.tracking-section {
+
+    width: 90%;
+
+    margin: 40px auto;
+}
+
+
+.tracking-section h1 {
+
+    color: white;
+
+    margin-bottom: 40px;
+
+    font-size: 42px;
+}
+
+
+.tracking-card {
+
+    background: rgba(255,255,255,0.08);
+
+    padding: 30px;
+
+    margin-bottom: 30px;
+
+    border-radius: 20px;
+
+    color: white;
+
+    backdrop-filter: blur(10px);
+}
+
+
+.tracking-card h2 {
+
+    color: cyan;
+
+    margin-bottom: 15px;
+}
+
+
+.status-buttons {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+
+.status-buttons button {
+
+    padding: 12px 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: cyan;
+
+    color: black;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.status-buttons button:hover {
+
+    transform: scale(1.05);
+}
+
+/* =========================
+   QUANTITY CONTROLS
+========================= */
+
+.quantity-controls {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 15px;
+}
+
+
+.quantity-controls button {
+
+    width: 40px;
+
+    height: 40px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: cyan;
+
+    color: black;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.quantity-controls span {
+
+    font-size: 20px;
+
+    color: white;
+
+    font-weight: bold;
+}
+
+
+.subtotal {
+
+    margin-top: 15px;
+
+    color: cyan;
+
+    font-weight: bold;
+}

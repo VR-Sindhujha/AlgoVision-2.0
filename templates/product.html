@@ -199,7 +199,73 @@
     }
 
     </script>
+<div class="review-section">
 
+    <h2>Customer Reviews ⭐</h2>
+
+    <form
+    method="POST"
+    action="/add-review/{{ product_name }}"
+    class="review-form"
+    >
+
+        <input
+        type="text"
+        name="review"
+        placeholder="Write your review..."
+        required
+        >
+
+        <select name="rating">
+
+            <option>5</option>
+            <option>4</option>
+            <option>3</option>
+            <option>2</option>
+            <option>1</option>
+
+        </select>
+
+        <button type="submit">
+
+            Submit Review 🚀
+
+        </button>
+
+    </form>
+
+
+    {% for r in reviews %}
+
+        {% if r.product == product_name %}
+
+            <div class="review-card">
+
+                <h4>
+
+                    {{ r.user }}
+
+                </h4>
+
+                <p>
+
+                    {{ r.review }}
+
+                </p>
+
+                <p>
+
+                    ⭐ {{ r.rating }}/5
+
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    {% endfor %}
+
+</div>
 </body>
 
 </html>

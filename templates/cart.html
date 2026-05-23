@@ -87,8 +87,56 @@
 
                         </p>
 
+
+                        <!-- QUANTITY CONTROLS -->
+
+                        <div class="quantity-controls">
+
+                        <a
+                        href="/decrease-quantity/{{ item.id }}"
+                        >
+
+                            <button>
+
+                                -
+
+                            </button>
+
+                        </a>
+
+
+                        <span>
+
+                            {{ item.get('quantity', 1) }}
+
+                        </span>
+
+
+                        <a
+                        href="/increase-quantity/{{ item.id }}"
+                        >
+
+                            <button>
+
+                                +
+
+                            </button>
+
+                        </a>
+
                     </div>
 
+
+    <!-- SUBTOTAL -->
+
+    <p class="subtotal">
+
+        Subtotal:
+        ₹{{ item.price.replace(',', '')|int * item.get('quantity', 1) }}
+
+    </p>
+
+</div>
 
                     <!-- REMOVE -->
 
