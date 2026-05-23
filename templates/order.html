@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Place Order</title>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            ALGO
+
+        </div>
+
+    </div>
+
+
+    <!-- ORDER SECTION -->
+
+    <section class="order-page">
+
+        <div class="order-card">
+
+            <h1>
+
+                Place Your Order 🚀
+
+            </h1>
+
+            <p>
+
+                {{ product.name }}
+
+            </p>
+
+            <form method="POST">
+
+                <input
+                type="text"
+                name="customer_name"
+                placeholder="Customer Name"
+                required
+                >
+
+                <input
+                type="text"
+                name="destination"
+                placeholder="Delivery Destination"
+                required
+                >
+
+                <select
+                name="priority"
+                required
+                >
+
+                    <option value="">
+
+                        Select Priority
+
+                    </option>
+
+                    <option>
+
+                        High
+
+                    </option>
+
+                    <option>
+
+                        Medium
+
+                    </option>
+
+                    <option>
+
+                        Low
+
+                    </option>
+
+                </select>
+
+                <select
+                name="delivery_speed"
+                required
+                >
+
+                    <option value="">
+
+                        Select Delivery Speed
+
+                    </option>
+
+                    <option>
+
+                        Express
+
+                    </option>
+
+                    <option>
+
+                        Standard
+
+                    </option>
+
+                </select>
+
+                <button type="submit">
+
+                    Confirm Order 🚀
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

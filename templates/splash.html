@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ALGO</title>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+
+            height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background:
+
+            linear-gradient(
+                135deg,
+                #020617,
+                #001845,
+                #000814
+            );
+
+            overflow: hidden;
+        }
+
+        .splash-container {
+
+            text-align: center;
+        }
+
+        .logo {
+
+            font-size: 120px;
+
+            font-weight: 700;
+
+            color: #00d4ff;
+
+            letter-spacing: 10px;
+
+            animation:
+
+            glow 2s infinite alternate;
+        }
+
+        .tagline {
+
+            margin-top: 20px;
+
+            font-size: 24px;
+
+            color: #cbd5e1;
+
+            animation:
+
+            fadeIn 2s ease;
+        }
+
+        @keyframes glow {
+
+            from {
+
+                text-shadow:
+
+                0 0 20px #00d4ff;
+            }
+
+            to {
+
+                text-shadow:
+
+                0 0 50px #00d4ff,
+                0 0 80px #00ffa3;
+            }
+        }
+
+        @keyframes fadeIn {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(20px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="splash-container">
+
+        <div class="logo">
+
+            ALGO
+
+        </div>
+
+        <div class="tagline">
+
+            Smart Logistics Powered by DSA 🚀
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        setTimeout(function() {
+
+            window.location.href = "/login";
+
+        }, 2500);
+
+    </script>
+
+</body>
+
+</html>

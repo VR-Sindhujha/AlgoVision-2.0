@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ALGO Home</title>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            ALGO
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <input
+        type="text"
+        id="searchInput"
+        placeholder="Search products..."
+        onkeyup="searchProducts()"
+        >
+
+
+        <!-- NAV BUTTONS -->
+
+        <div class="nav-buttons">
+
+            <a href="/cart">
+
+                <button>
+
+                    Cart 🛒
+
+                </button>
+
+            </a>
+
+            <a href="/wishlist">
+
+                <button>
+
+                    Wishlist ❤️
+
+                </button>
+
+            </a>
+
+            <a href="/profile">
+
+                <button>
+
+                    Profile 👤
+
+                </button>
+
+            </a>
+
+            <a href="/recommendations">
+
+                <button>
+
+                    AI 🤖
+
+                </button>
+
+            </a>
+
+            <a href="/analytics">
+
+                <button>
+
+                    Analytics 📊
+
+                </button>
+
+            </a>
+
+            <a href="/live-tracking">
+
+                <button>
+
+                    Live 🚚
+
+                </button>
+
+            </a>
+
+            <a href="/chatbot">
+
+                <button>
+
+                    Support 🤖
+
+                </button>
+
+            </a>
+
+            <a href="/inventory">
+
+                <button>
+
+                    Inventory 📦
+
+                </button>
+
+            </a>
+
+            <a href="/prediction">
+
+                <button>
+
+                    AI ETA 🧠
+
+                </button>
+
+            </a>
+
+            <a href="/route-optimizer">
+
+                <button>
+
+                    Route 🌍
+
+                </button>
+
+            </a>
+            <a href="/fraud-detection">
+
+                <button>
+
+                    Fraud 🚨
+
+                </button>
+
+            </a>
+
+            <a href="/admin">
+
+                <button>
+
+                    Admin 🧾
+
+                </button>
+
+            </a>
+
+            <a href="/jwt-login">
+
+                <button>
+
+                    JWT 🔐
+
+                </button>
+
+            </a>
+
+            <a href="/maps">
+
+                <button>
+
+                    Maps 🌍
+
+                </button>
+
+            </a>
+
+            <a href="/realtime">
+
+                <button>
+
+                    LiveSocket ⚡
+
+                </button>
+
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- HERO SECTION -->
+
+    <section
+    class="hero-section"
+    id="heroSection"
+    >
+
+        <div class="hero-content">
+
+            <h1>
+
+                Smart Logistics
+                Powered by DSA 🚀
+
+            </h1>
+
+            <p>
+
+                Intelligent delivery platform
+                optimized using Queue,
+                Heap, Graph, Dijkstra
+                and Dynamic Programming.
+
+            </p>
+
+            <button>
+
+                Explore Deliveries
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- SECTION TITLE -->
+
+    <section
+    class="section-title"
+    id="sectionTitle"
+    >
+
+        <h2>
+
+            Trending Deliveries 🚀
+
+        </h2>
+
+        <p>
+
+            Explore our premium intelligent
+            delivery services.
+
+        </p>
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+
+    <section class="products">
+
+
+        <!-- Medicine -->
+
+        <a href="/product/medicine" class="card-link">
+
+            <div class="card" data-name="medicine">
+
+                <img
+                src="{{ url_for('static', filename='images/medicine.jpg') }}"
+                >
+
+                <h3>
+
+                    Medicine Kit
+
+                </h3>
+
+                <p>
+
+                    Emergency Delivery
+
+                </p>
+
+                <button>
+
+                    Add to Cart
+
+                </button>
+
+            </div>
+
+        </a>
+
+
+        <!-- Watch -->
+
+        <a href="/product/watch" class="card-link">
+
+            <div class="card" data-name="watch">
+
+                <img
+                src="{{ url_for('static', filename='images/watch.jpg') }}"
+                >
+
+                <h3>
+
+                    Luxury Watch
+
+                </h3>
+
+                <p>
+
+                    VIP Delivery
+
+                </p>
+
+                <button>
+
+                    Add to Cart
+
+                </button>
+
+            </div>
+
+        </a>
+
+
+        <!-- Grocery -->
+
+        <a href="/product/grocery" class="card-link">
+
+            <div class="card" data-name="grocery">
+
+                <img
+                src="{{ url_for('static', filename='images/grocery.jpg') }}"
+                >
+
+                <h3>
+
+                    Grocery Pack
+
+                </h3>
+
+                <p>
+
+                    Daily Essentials
+
+                </p>
+
+                <button>
+
+                    Add to Cart
+
+                </button>
+
+            </div>
+
+        </a>
+
+
+        <!-- Electronics -->
+
+        <a href="/product/electronics" class="card-link">
+
+            <div class="card" data-name="electronics">
+
+                <img
+                src="{{ url_for('static', filename='images/electronics.jpg') }}"
+                >
+
+                <h3>
+
+                    Electronics Kit
+
+                </h3>
+
+                <p>
+
+                    Fragile Delivery
+
+                </p>
+
+                <button>
+
+                    Add to Cart
+
+                </button>
+
+            </div>
+
+        </a>
+
+
+        <!-- Food -->
+
+        <a href="/product/food" class="card-link">
+
+            <div class="card" data-name="food">
+
+                <img
+                src="{{ url_for('static', filename='images/food.jpg') }}"
+                >
+
+                <h3>
+
+                    Food Package
+
+                </h3>
+
+                <p>
+
+                    Fast Delivery
+
+                </p>
+
+                <button>
+
+                    Add to Cart
+
+                </button>
+
+            </div>
+
+        </a>
+
+    </section>
+
+
+    <!-- SEARCH SCRIPT -->
+
+    <script>
+
+    function searchProducts() {
+
+        let input = document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase();
+
+        let cards = document
+            .getElementsByClassName("card");
+
+        let hero =
+            document.getElementById("heroSection");
+
+        let title =
+            document.getElementById("sectionTitle");
+
+
+        if(input.length > 0) {
+
+            hero.style.display = "none";
+
+            title.style.display = "none";
+        }
+
+        else {
+
+            hero.style.display = "flex";
+
+            title.style.display = "block";
+        }
+
+
+        for (let i = 0; i < cards.length; i++) {
+
+            let product = cards[i]
+                .getAttribute("data-name");
+
+            if (product.includes(input)) {
+
+                cards[i]
+                .parentElement
+                .style.display = "block";
+            }
+
+            else {
+
+                cards[i]
+                .parentElement
+                .style.display = "none";
+            }
+        }
+    }
+
+    </script>
+
+</body>
+
+</html>

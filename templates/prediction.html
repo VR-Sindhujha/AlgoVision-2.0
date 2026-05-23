@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AI Prediction</title>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            AI ETA Prediction 🧠
+
+        </div>
+
+    </div>
+
+
+    <!-- PAGE -->
+
+    <section class="prediction-page">
+
+        <div class="prediction-container">
+
+
+            <!-- HEADER -->
+
+            <div class="prediction-header">
+
+                <h1>
+
+                    Smart Delivery Prediction 🚀
+
+                </h1>
+
+                <p>
+
+                    AI-powered logistics estimation
+                    using delivery intelligence and
+                    priority optimization.
+
+                </p>
+
+            </div>
+
+
+            <!-- PREDICTION CARD -->
+
+            <div class="prediction-card">
+
+
+                <!-- FORM -->
+
+                <form method="POST">
+
+
+                    <!-- DISTANCE -->
+
+                    <input
+                    type="number"
+                    name="distance"
+                    placeholder="Enter Distance (KM)"
+                    required
+                    >
+
+
+                    <!-- TRAFFIC -->
+
+                    <select
+                    name="traffic"
+                    required
+                    >
+
+                        <option value="">
+
+                            Select Traffic
+
+                        </option>
+
+                        <option>
+
+                            Low
+
+                        </option>
+
+                        <option>
+
+                            Medium
+
+                        </option>
+
+                        <option>
+
+                            High
+
+                        </option>
+
+                    </select>
+
+
+                    <!-- PRIORITY -->
+
+                    <select
+                    name="priority"
+                    required
+                    >
+
+                        <option value="">
+
+                            Delivery Priority
+
+                        </option>
+
+                        <option>
+
+                            Standard
+
+                        </option>
+
+                        <option>
+
+                            Express
+
+                        </option>
+
+                        <option>
+
+                            VIP
+
+                        </option>
+
+                    </select>
+
+
+                    <!-- BUTTON -->
+
+                    <button type="submit">
+
+                        Predict ETA 🚀
+
+                    </button>
+
+                </form>
+
+
+                <!-- RESULT -->
+
+                {% if eta %}
+
+                <div class="prediction-result">
+
+                    ⏱️ Estimated Delivery Time:
+
+                    <span>
+
+                        {{ eta }}
+
+                    </span>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Fraud Detection</title>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            Fraud Detection 🚨
+
+        </div>
+
+    </div>
+
+
+    <!-- PAGE -->
+
+    <section class="fraud-page">
+
+        <div class="fraud-container">
+
+
+            <!-- HEADER -->
+
+            <div class="fraud-header">
+
+                <h1>
+
+                    AI Fraud Detection 🚀
+
+                </h1>
+
+                <p>
+
+                    Intelligent anomaly detection
+                    for suspicious logistics and payment activity.
+
+                </p>
+
+            </div>
+
+
+            <!-- CARD -->
+
+            <div class="fraud-card">
+
+
+                <!-- FORM -->
+
+                <form method="POST">
+
+
+                    <!-- ORDER VALUE -->
+
+                    <input
+                    type="number"
+                    name="amount"
+                    placeholder="Order Amount"
+                    required
+                    >
+
+
+                    <!-- LOCATION -->
+
+                    <select
+                    name="location"
+                    required
+                    >
+
+                        <option value="">
+
+                            Select Location
+
+                        </option>
+
+                        <option>
+
+                            Normal Zone
+
+                        </option>
+
+                        <option>
+
+                            High Risk Zone
+
+                        </option>
+
+                    </select>
+
+
+                    <!-- PAYMENT -->
+
+                    <select
+                    name="payment"
+                    required
+                    >
+
+                        <option value="">
+
+                            Payment Type
+
+                        </option>
+
+                        <option>
+
+                            Card
+
+                        </option>
+
+                        <option>
+
+                            UPI
+
+                        </option>
+
+                        <option>
+
+                            Crypto
+
+                        </option>
+
+                    </select>
+
+
+                    <!-- BUTTON -->
+
+                    <button type="submit">
+
+                        Analyze Fraud 🚨
+
+                    </button>
+
+                </form>
+
+
+                <!-- RESULT -->
+
+                {% if result %}
+
+                <div class="fraud-result">
+
+                    <h2>
+
+                        Fraud Analysis Result
+
+                    </h2>
+
+                    <p>
+
+                        {{ result }}
+
+                    </p>
+
+                    <span>
+
+                        Risk Score:
+                        {{ score }}%
+                    </span>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

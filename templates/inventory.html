@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Inventory Management</title>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            Inventory System 📦
+
+        </div>
+
+    </div>
+
+
+    <!-- INVENTORY PAGE -->
+
+    <section class="inventory-page">
+
+        <div class="inventory-container">
+
+
+            <!-- HEADER -->
+
+            <div class="inventory-header">
+
+                <h1>
+
+                    Warehouse Inventory 🚀
+
+                </h1>
+
+                <p>
+
+                    AI-powered stock monitoring and
+                    logistics inventory management.
+
+                </p>
+
+            </div>
+
+
+            <!-- INVENTORY GRID -->
+
+            <div class="inventory-grid">
+
+
+                <!-- ITEM -->
+
+                {% for item in inventory %}
+
+                <div class="inventory-card">
+
+                    <img
+                    src="{{ url_for('static', filename='images/' + item.image) }}"
+                    >
+
+                    <h2>
+
+                        {{ item.name }}
+
+                    </h2>
+
+                    <span>
+
+                        Stock:
+                        {{ item.stock }}
+
+                    </span>
+
+
+                    <!-- STATUS -->
+
+                    {% if item.stock > 20 %}
+
+                        <div class="stock-status available">
+
+                            In Stock ✅
+
+                        </div>
+
+                    {% elif item.stock > 5 %}
+
+                        <div class="stock-status medium">
+
+                            Limited Stock ⚠️
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="stock-status low">
+
+                            Low Stock ❌
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

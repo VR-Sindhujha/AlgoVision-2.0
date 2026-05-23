@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AI Recommendations</title>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            AI Recommendations 🤖
+
+        </div>
+
+    </div>
+
+
+    <!-- PAGE -->
+
+    <section class="recommend-page">
+
+        <div class="recommend-container">
+
+            <h1>
+
+                Recommended For You 🚀
+
+            </h1>
+
+            <p>
+
+                AI-powered intelligent product suggestions
+                based on logistics trends and user behavior.
+
+            </p>
+
+
+            <!-- PRODUCTS -->
+
+            <div class="recommend-grid">
+
+                {% for item in recommendations %}
+
+                <div class="recommend-card">
+
+                    <img
+                    src="{{ url_for('static', filename='images/' + item.image) }}"
+                    >
+
+                    <h2>
+
+                        {{ item.name }}
+
+                    </h2>
+
+                    <span>
+
+                        ₹ {{ item.price }}
+
+                    </span>
+
+                    <p>
+
+                        {{ item.delivery }}
+
+                    </p>
+
+                    <a href="/product/{{ item.route }}">
+
+                        <button>
+
+                            Explore 🚀
+
+                        </button>
+
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Order Tracking</title>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            Order Tracking 🚚
+
+        </div>
+
+    </div>
+
+
+    <!-- TRACKING PAGE -->
+
+    <section class="tracking-page">
+
+        <div class="tracking-card">
+
+            <h1>
+
+                Your Order Status 📦
+
+            </h1>
+
+            <p>
+
+                Order is moving through our
+                intelligent logistics network.
+
+            </p>
+
+
+            <!-- TRACKER -->
+
+            <div class="tracker">
+
+
+                <!-- STEP 1 -->
+
+                <div class="track-step active">
+
+                    <div class="circle">
+
+                        ✓
+
+                    </div>
+
+                    <span>
+
+                        Ordered
+
+                    </span>
+
+                </div>
+
+
+                <!-- LINE -->
+
+                <div class="track-line active-line"></div>
+
+
+                <!-- STEP 2 -->
+
+                <div class="track-step active">
+
+                    <div class="circle">
+
+                        ✓
+
+                    </div>
+
+                    <span>
+
+                        Packed
+
+                    </span>
+
+                </div>
+
+
+                <!-- LINE -->
+
+                <div class="track-line active-line"></div>
+
+
+                <!-- STEP 3 -->
+
+                <div class="track-step active">
+
+                    <div class="circle">
+
+                        ✓
+
+                    </div>
+
+                    <span>
+
+                        Shipped
+
+                    </span>
+
+                </div>
+
+
+                <!-- LINE -->
+
+                <div class="track-line"></div>
+
+
+                <!-- STEP 4 -->
+
+                <div class="track-step">
+
+                    <div class="circle">
+
+                        4
+
+                    </div>
+
+                    <span>
+
+                        Out for Delivery
+
+                    </span>
+
+                </div>
+
+
+                <!-- LINE -->
+
+                <div class="track-line"></div>
+
+
+                <!-- STEP 5 -->
+
+                <div class="track-step">
+
+                    <div class="circle">
+
+                        5
+
+                    </div>
+
+                    <span>
+
+                        Delivered
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ETA -->
+
+            <div class="eta-box">
+
+                🚀 Estimated Delivery:
+                <strong>
+
+                    12 Minutes
+
+                </strong>
+
+            </div>
+
+
+            <!-- DRIVER -->
+
+            <div class="driver-box">
+
+                <h2>
+
+                    Assigned Driver 👨‍✈️
+
+                </h2>
+
+                <p>
+
+                    Name:
+                    Arjun Kumar
+
+                </p>
+
+                <p>
+
+                    Vehicle:
+                    TN 09 AB 4321
+
+                </p>
+
+                <p>
+
+                    Rating:
+                    ⭐ 4.9
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

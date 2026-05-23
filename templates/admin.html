@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Panel</title>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            Admin Dashboard 🧾
+
+        </div>
+
+    </div>
+
+
+    <!-- ADMIN PAGE -->
+
+    <section class="admin-page">
+
+        <div class="admin-container">
+
+
+            <!-- HEADER -->
+
+            <div class="admin-header">
+
+                <h1>
+
+                    Enterprise Control Center 🚀
+
+                </h1>
+
+                <p>
+
+                    Centralized logistics monitoring
+                    and operational intelligence dashboard.
+
+                </p>
+
+            </div>
+
+
+            <!-- STATS -->
+
+            <div class="admin-grid">
+
+
+                <!-- CARD -->
+
+                <div class="admin-card">
+
+                    <h2>
+
+                        Total Users
+
+                    </h2>
+
+                    <span>
+
+                        {{ data.users }}
+
+                    </span>
+
+                </div>
+
+
+                <!-- CARD -->
+
+                <div class="admin-card">
+
+                    <h2>
+
+                        Total Orders
+
+                    </h2>
+
+                    <span>
+
+                        {{ data.orders }}
+
+                    </span>
+
+                </div>
+
+
+                <!-- CARD -->
+
+                <div class="admin-card">
+
+                    <h2>
+
+                        Revenue
+
+                    </h2>
+
+                    <span>
+
+                        ₹ {{ data.revenue }}
+
+                    </span>
+
+                </div>
+
+
+                <!-- CARD -->
+
+                <div class="admin-card">
+
+                    <h2>
+
+                        Active Deliveries
+
+                    </h2>
+
+                    <span>
+
+                        {{ data.deliveries }}
+
+                    </span>
+
+                </div>
+
+
+                <!-- CARD -->
+
+                <div class="admin-card">
+
+                    <h2>
+
+                        Fraud Alerts
+
+                    </h2>
+
+                    <span>
+
+                        {{ data.fraud }}
+
+                    </span>
+
+                </div>
+
+
+                <!-- CARD -->
+
+                <div class="admin-card">
+
+                    <h2>
+
+                        Warehouse Stock
+
+                    </h2>
+
+                    <span>
+
+                        {{ data.stock }}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="admin-table">
+
+                <h2>
+
+                    Recent Orders 📦
+
+                </h2>
+
+                <table>
+
+                    <tr>
+
+                        <th>Order ID</th>
+
+                        <th>Customer</th>
+
+                        <th>Status</th>
+
+                        <th>Amount</th>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>#1021</td>
+
+                        <td>Rahul</td>
+
+                        <td>Delivered</td>
+
+                        <td>₹2400</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>#1022</td>
+
+                        <td>Ananya</td>
+
+                        <td>On The Way</td>
+
+                        <td>₹1800</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>#1023</td>
+
+                        <td>Vikram</td>
+
+                        <td>Packed</td>
+
+                        <td>₹5200</td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

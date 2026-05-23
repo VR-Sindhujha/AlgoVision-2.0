@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ product_name }}</title>
+
+    <!-- GOOGLE FONT -->
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <!-- CSS -->
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            ALGO
+
+        </div>
+
+    </div>
+
+
+    <!-- PRODUCT PAGE -->
+
+    <section class="product-page">
+
+
+        <!-- PRODUCT IMAGE -->
+
+        <div class="product-image">
+
+            <img
+            src="{{ url_for('static', filename='images/' + image) }}"
+            alt="product image"
+            >
+
+        </div>
+
+
+        <!-- PRODUCT INFO -->
+
+        <div class="product-info">
+
+            <h1>
+
+                {{ product_name }} 🚀
+
+            </h1>
+
+
+            <p class="product-description">
+
+                {{ description }}
+
+            </p>
+
+
+            <!-- TAGS -->
+
+            <div class="product-tags">
+
+                <span>
+
+                    {{ delivery }}
+
+                </span>
+
+                <span>
+
+                    Priority Shipping
+
+                </span>
+
+                <span>
+
+                    Secure Packaging
+
+                </span>
+
+            </div>
+
+
+            <!-- PRICE -->
+
+            <h2>
+
+                ₹ {{ price }}
+
+            </h2>
+
+
+            <!-- BUTTONS -->
+
+            <div class="product-buttons">
+
+
+                <!-- PLACE ORDER -->
+
+                <a href="/order/{{ route_name }}">
+
+                    <button>
+
+                        Place Order 🚀
+
+                    </button>
+
+                </a>
+
+
+                <!-- ADD TO CART -->
+
+                <a
+                href="/add-to-cart/{{ route_name }}"
+                onclick="event.preventDefault(); addToCartNotification(); setTimeout(() => { window.location.href='/add-to-cart/{{ route_name }}'; }, 1200);"
+                >
+
+                    <button>
+
+                        Add to Cart 🛒
+
+                    </button>
+
+                </a>
+
+
+                <!-- WISHLIST -->
+
+                <a
+                href="/add-to-wishlist/{{ route_name }}"
+                onclick="event.preventDefault(); wishlistNotification(); setTimeout(() => { window.location.href='/add-to-wishlist/{{ route_name }}'; }, 1200);"
+                >
+
+                    <button>
+
+                        Wishlist ❤️
+
+                    </button>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- NOTIFICATION JS PATH -->
+
+    <script src="/static/js/notifications.js"></script>
+
+
+    <!-- NOTIFICATION FUNCTIONS -->
+
+    <script>
+
+    function addToCartNotification() {
+
+        showNotification(
+
+            "Product added to cart!",
+
+            "cart"
+        );
+    }
+
+
+    function wishlistNotification() {
+
+        showNotification(
+
+            "Added to wishlist!",
+
+            "wishlist"
+        );
+    }
+
+    </script>
+
+</body>
+
+</html>

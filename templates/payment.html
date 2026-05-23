@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Payment</title>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            Secure Payment 💳
+
+        </div>
+
+    </div>
+
+
+    <!-- PAYMENT PAGE -->
+
+    <section class="payment-page">
+
+        <div class="payment-card">
+
+            <h1>
+
+                Checkout 💳
+
+            </h1>
+
+            <p>
+
+                Complete your secure payment
+
+            </p>
+
+
+            <!-- PAYMENT FORM -->
+
+            <form method="POST">
+
+                <!-- PAYMENT METHOD -->
+
+                <select
+                name="payment_method"
+                required
+                >
+
+                    <option value="">
+
+                        Select Payment Method
+
+                    </option>
+
+                    <option>
+
+                        UPI
+
+                    </option>
+
+                    <option>
+
+                        Credit Card
+
+                    </option>
+
+                    <option>
+
+                        Debit Card
+
+                    </option>
+
+                    <option>
+
+                        Cash on Delivery
+
+                    </option>
+
+                </select>
+
+
+                <!-- CARD NUMBER -->
+
+                <input
+                type="text"
+                placeholder="Card Number / UPI ID"
+                required
+                >
+
+
+                <!-- NAME -->
+
+                <input
+                type="text"
+                placeholder="Card Holder Name"
+                required
+                >
+
+
+                <!-- CVV -->
+
+                <input
+                type="password"
+                placeholder="CVV"
+                required
+                >
+
+
+                <!-- BUTTON -->
+
+                <button type="submit">
+
+                    Pay Now 🚀
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

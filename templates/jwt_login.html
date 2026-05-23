@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>JWT Login</title>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <section class="prediction-page">
+
+        <div class="prediction-container">
+
+            <div class="prediction-header">
+
+                <h1>
+
+                    Secure JWT Login 🔐
+
+                </h1>
+
+                <p>
+
+                    Production-level token authentication system.
+
+                </p>
+
+            </div>
+
+
+            <div class="prediction-card">
+
+                <form method="POST">
+
+                    <input
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    required
+                    >
+
+                    <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                    >
+
+                    <button type="submit">
+
+                        Generate Token 🚀
+
+                    </button>
+
+                </form>
+
+
+                {% if token %}
+
+                <div class="prediction-result">
+
+                    JWT Token Generated ✅
+
+                </div>
+
+                <textarea
+                style="
+                width:100%;
+                height:180px;
+                margin-top:20px;
+                border-radius:16px;
+                padding:15px;
+                background:#111827;
+                color:#00ffa3;
+                border:none;
+                ">
+
+{{ token }}
+
+                </textarea>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

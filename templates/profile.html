@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Profile</title>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            My Profile 👤
+
+        </div>
+
+    </div>
+
+
+    <!-- PROFILE PAGE -->
+
+    <section class="profile-page">
+
+        <div class="profile-card">
+
+
+            <!-- USER IMAGE -->
+
+            <div class="profile-image">
+
+                👤
+
+            </div>
+
+
+            <!-- USER INFO -->
+
+            <h1>
+
+                {{ username }}
+
+            </h1>
+
+            <p>
+
+                Smart Logistics Premium User 🚀
+
+            </p>
+
+
+            <!-- STATS -->
+
+            <div class="profile-stats">
+
+                <div class="stat-box">
+
+                    <h2>
+
+                        {{ total_orders }}
+
+                    </h2>
+
+                    <span>
+
+                        Orders
+
+                    </span>
+
+                </div>
+
+                <div class="stat-box">
+
+                    <h2>
+
+                        {{ wishlist_count }}
+
+                    </h2>
+
+                    <span>
+
+                        Wishlist
+
+                    </span>
+
+                </div>
+
+                <div class="stat-box">
+
+                    <h2>
+
+                        {{ cart_count }}
+
+                    </h2>
+
+                    <span>
+
+                        Cart
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ORDER HISTORY -->
+
+            <div class="order-history">
+
+                <h2>
+
+                    Order History 📦
+
+                </h2>
+
+                {% for order in orders %}
+
+                <div class="history-card">
+
+                    <h3>
+
+                        {{ order[2] }}
+
+                    </h3>
+
+                    <p>
+
+                        Destination:
+                        {{ order[3] }}
+
+                    </p>
+
+                    <span>
+
+                        Priority:
+                        {{ order[4] }}
+
+                    </span>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- LOGOUT -->
+
+            <a href="/logout">
+
+                <button>
+
+                    Logout 🚪
+
+                </button>
+
+            </a>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

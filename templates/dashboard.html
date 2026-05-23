@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ALGO Dashboard</title>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <div class="sidebar-logo">
+
+            ALGO
+
+        </div>
+
+        <ul>
+
+    <li>
+        <a href="#top">
+            🏠 Dashboard
+        </a>
+    </li>
+
+    <li>
+        <a href="#orders">
+            📦 Orders
+        </a>
+    </li>
+
+    <li>
+        <a href="#delivery">
+            🚚 Delivery
+        </a>
+    </li>
+
+    <li>
+        <a href="#dsa">
+            🧠 DSA Engine
+        </a>
+    </li>
+
+    <li>
+        <a href="#analytics">
+            📊 Analytics
+        </a>
+    </li>
+
+    <li>
+        <a href="#settings">
+            ⚙️ Settings
+        </a>
+    </li>
+
+</ul>
+</div>
+
+
+
+    <!-- TOP NAVBAR -->
+
+    <div class="top-navbar">
+
+        <div class="dashboard-title">
+
+            Smart Delivery Analytics 🚀
+
+        </div>
+
+        <div class="top-search">
+
+            <input
+            type="text"
+            placeholder="Search Dashboard..."
+            >
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DASHBOARD -->
+
+    <section class="dashboard-container" id="top">
+
+
+        <!-- STATISTICS CARDS -->
+
+        <div class="stats-card">
+
+            <h3>
+
+                Total Orders
+
+            </h3>
+
+            <h1>
+
+                {{ orders|length }}
+
+            </h1>
+
+        </div>
+
+<div id="delivery"></div>
+        <div class="stats-card">
+
+            <h3>
+
+                Active Dispatch
+
+            </h3>
+
+            <h1>
+
+                {{ active_dispatch[2] }}
+
+            </h1>
+
+        </div>
+
+
+        <div class="stats-card">
+
+            <h3>
+
+                Best Warehouse
+
+            </h3>
+
+            <h1>
+
+                {{ selected_warehouse }}
+
+            </h1>
+
+        </div>
+
+
+        <div class="stats-card">
+
+            <h3>
+
+                Resource Score
+
+            </h3>
+
+            <h1>
+
+                {{ resource_value }}
+
+            </h1>
+
+        </div>
+
+
+<div id="analytics"></div>
+        <!-- SEARCH ORDER -->
+
+        <div class="dashboard-card">
+
+            <h2>
+
+                🔍 Search Order
+
+            </h2>
+
+            <form method="POST">
+
+                <div class="search-box">
+
+                    <input
+                    type="number"
+                    name="order_id"
+                    placeholder="Enter Order ID"
+                    required
+                    >
+
+                    <button type="submit">
+
+                        Search
+
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            {% if searched_order %}
+
+            <div class="search-result">
+
+                <p>
+
+                    Customer:
+                    {{ searched_order.customer }}
+
+                </p>
+
+                <p>
+
+                    Product:
+                    {{ searched_order.product }}
+
+                </p>
+
+                <p>
+
+                    Destination:
+                    {{ searched_order.destination }}
+
+                </p>
+
+                <p>
+
+                    Priority:
+                    {{ searched_order.priority }}
+
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+
+        <!-- CURRENTLY DISPATCHING -->
+
+        <div class="dashboard-card">
+
+            <h2>
+
+                🚀 Currently Dispatching
+
+            </h2>
+
+            <p>
+
+                Product:
+                {{ active_dispatch[2] }}
+
+            </p>
+
+            <p>
+
+                Priority:
+                {{ -active_dispatch[0] }}
+
+            </p>
+
+            <p>
+
+                Dispatch Time:
+                {{ active_dispatch[1] }}
+
+            </p>
+
+        </div>
+
+
+<div id="dsa"></div>
+        <!-- BEST ROUTE -->
+
+        <div class="dashboard-card">
+
+            <h2>
+
+                🗺️ Best Route
+
+            </h2>
+
+            <ul>
+
+                {% for location in best_route %}
+
+                    <li>
+
+                        {{ location }}
+
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
+            <br>
+
+            <p>
+
+                Distance:
+                {{ shortest_distance }}
+
+                KM
+
+            </p>
+
+        </div>
+
+
+
+        <!-- BST -->
+
+        <div class="dashboard-card">
+
+            <h2>
+
+                🌳 BST Product Traversal
+
+            </h2>
+
+            <div class="tags">
+
+                {% for product in bst_products %}
+
+                    <span>
+
+                        {{ product }}
+
+                    </span>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HEAP -->
+
+        <div class="dashboard-card">
+
+            <h2>
+
+                🔥 Heap Prioritization
+
+            </h2>
+
+            <ul>
+
+                {% for item in heap_priorities %}
+
+                    <li>
+
+                        {{ item }}
+
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+
+<div id="orders"></div>
+        <!-- ORDER HISTORY -->
+
+        <div class="dashboard-card full-width">
+
+            <h2>
+
+                📦 Order History
+
+            </h2>
+
+            <table>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Customer</th>
+
+                    <th>Product</th>
+
+                    <th>Destination</th>
+
+                    <th>Priority</th>
+
+                </tr>
+
+                {% for order in orders %}
+
+                <tr>
+
+                    <td>{{ order[0] }}</td>
+
+                    <td>{{ order[1] }}</td>
+
+                    <td>{{ order[2] }}</td>
+
+                    <td>{{ order[3] }}</td>
+
+                    <td>{{ order[4] }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+<div id="settings" class="dashboard-card">
+
+    <h2>⚙️ Settings</h2>
+
+    <p>Dark Mode Enabled</p>
+
+    <p>DSA Engine Active</p>
+
+    <p>Realtime Dispatch Monitoring ON</p>
+
+</div>
+    </section>
+
+</body>
+
+</html>

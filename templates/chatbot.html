@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AI Chatbot</title>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            AI Support 🤖
+
+        </div>
+
+    </div>
+
+
+    <!-- CHATBOT PAGE -->
+
+    <section class="chatbot-page">
+
+        <div class="chatbot-container">
+
+
+            <!-- HEADER -->
+
+            <div class="chatbot-header">
+
+                <h1>
+
+                    AI Customer Support 🚀
+
+                </h1>
+
+                <p>
+
+                    Intelligent support assistant
+                    for delivery and logistics queries.
+
+                </p>
+
+            </div>
+
+
+            <!-- CHAT AREA -->
+
+            <div
+            class="chat-area"
+            id="chatArea"
+            >
+
+
+                <!-- BOT -->
+
+                <div class="bot-message">
+
+                    👋 Hello!
+                    Ask me about your orders,
+                    tracking, payment or delivery.
+
+                </div>
+
+            </div>
+
+
+            <!-- INPUT -->
+
+            <div class="chat-input">
+
+                <input
+                type="text"
+                id="userInput"
+                placeholder="Ask something..."
+                >
+
+                <button
+                onclick="sendMessage()"
+                >
+
+                    Send 🚀
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CHATBOT SCRIPT -->
+
+    <script>
+
+    function sendMessage() {
+
+        let input =
+        document.getElementById(
+
+            "userInput"
+        );
+
+        let chatArea =
+        document.getElementById(
+
+            "chatArea"
+        );
+
+        let message =
+        input.value.trim();
+
+
+        if(message === "") {
+
+            return;
+        }
+
+
+        // USER MESSAGE
+
+        let userDiv =
+        document.createElement("div");
+
+        userDiv.className =
+        "user-message";
+
+        userDiv.innerText =
+        message;
+
+        chatArea.appendChild(userDiv);
+
+
+        // BOT RESPONSE
+
+        let botDiv =
+        document.createElement("div");
+
+        botDiv.className =
+        "bot-message";
+
+
+        // SIMPLE AI LOGIC
+
+        let reply =
+        "I am analyzing your query 🚀";
+
+
+        if(message.toLowerCase().includes("order")) {
+
+            reply =
+            "📦 Your order is currently being processed.";
+        }
+
+        else if(message.toLowerCase().includes("delivery")) {
+
+            reply =
+            "🚚 Delivery partner is on the way.";
+        }
+
+        else if(message.toLowerCase().includes("payment")) {
+
+            reply =
+            "💳 Payment was successfully received.";
+        }
+
+        else if(message.toLowerCase().includes("refund")) {
+
+            reply =
+            "💰 Refund request has been initiated.";
+        }
+
+        else if(message.toLowerCase().includes("hello")) {
+
+            reply =
+            "👋 Hello! How can I help you today?";
+        }
+
+
+        setTimeout(() => {
+
+            botDiv.innerText =
+            reply;
+
+            chatArea.appendChild(botDiv);
+
+            chatArea.scrollTop =
+            chatArea.scrollHeight;
+
+        }, 700);
+
+
+        // CLEAR
+
+        input.value = "";
+    }
+
+    </script>
+
+</body>
+
+</html>

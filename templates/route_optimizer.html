@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Route Optimizer</title>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            Route Optimizer 🌍
+
+        </div>
+
+    </div>
+
+
+    <!-- PAGE -->
+
+    <section class="route-page">
+
+        <div class="route-container">
+
+
+            <!-- HEADER -->
+
+            <div class="route-header">
+
+                <h1>
+
+                    Intelligent Route Optimization 🚀
+
+                </h1>
+
+                <p>
+
+                    AI + Dijkstra based shortest
+                    path optimization for logistics delivery.
+
+                </p>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <div class="route-card">
+
+                <form method="POST">
+
+
+                    <!-- SOURCE -->
+
+                    <select
+                    name="source"
+                    required
+                    >
+
+                        <option value="">
+
+                            Select Source
+
+                        </option>
+
+                        <option>
+
+                            Warehouse
+
+                        </option>
+
+                        <option>
+
+                            Hub A
+
+                        </option>
+
+                        <option>
+
+                            Hub B
+
+                        </option>
+
+                    </select>
+
+
+                    <!-- DESTINATION -->
+
+                    <select
+                    name="destination"
+                    required
+                    >
+
+                        <option value="">
+
+                            Select Destination
+
+                        </option>
+
+                        <option>
+
+                            Customer Zone
+
+                        </option>
+
+                        <option>
+
+                            City Center
+
+                        </option>
+
+                        <option>
+
+                            Rural Area
+
+                        </option>
+
+                    </select>
+
+
+                    <!-- BUTTON -->
+
+                    <button type="submit">
+
+                        Optimize Route 🚀
+
+                    </button>
+
+                </form>
+
+
+                <!-- RESULT -->
+
+                {% if best_route %}
+
+                <div class="route-result">
+
+                    <h2>
+
+                        Best Optimized Route 🌍
+
+                    </h2>
+
+                    <p>
+
+                        {{ best_route }}
+
+                    </p>
+
+                    <span>
+
+                        Estimated Cost:
+                        ₹ {{ cost }}
+
+                    </span>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>
