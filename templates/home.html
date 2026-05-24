@@ -152,6 +152,7 @@
                 </button>
 
             </a>
+
             <a href="/fraud-detection">
 
                 <button>
@@ -201,6 +202,17 @@
                 </button>
 
             </a>
+
+            <a href="/my-orders">
+
+                <button>
+
+                    My Orders 📦
+
+                </button>
+
+            </a>
+
         </div>
 
     </div>
@@ -265,6 +277,80 @@
     </section>
 
 
+    <!-- CATEGORY FILTER -->
+
+    <div class="category-bar">
+
+        <a href="/home">
+
+            <button>All</button>
+
+        </a>
+
+        <a href="/home?category=Medical">
+
+            <button>Medical</button>
+
+        </a>
+
+        <a href="/home?category=Electronics">
+
+            <button>Electronics</button>
+
+        </a>
+
+        <a href="/home?category=Luxury">
+
+            <button>Luxury</button>
+
+        </a>
+
+        <a href="/home?category=Food">
+
+            <button>Food</button>
+
+        </a>
+
+    </div>
+
+
+    <!-- PRICE FILTER -->
+
+    <div class="category-bar">
+
+        <a href="/home?price=low">
+
+            <button>
+
+                Under ₹2000
+
+            </button>
+
+        </a>
+
+        <a href="/home?price=medium">
+
+            <button>
+
+                ₹2000 - ₹5000
+
+            </button>
+
+        </a>
+
+        <a href="/home?price=high">
+
+            <button>
+
+                Premium ₹5000+
+
+            </button>
+
+        </a>
+
+    </div>
+
+
     <!-- PRODUCTS -->
 
     <section class="products">
@@ -292,7 +378,9 @@
 
                 </p>
 
-                <button>
+                <button
+                onclick="showToast('✅ Added to Cart')"
+                >
 
                     Add to Cart
 
@@ -325,7 +413,9 @@
 
                 </p>
 
-                <button>
+                <button
+                onclick="showToast('✅ Added to Cart')"
+                >
 
                     Add to Cart
 
@@ -358,7 +448,9 @@
 
                 </p>
 
-                <button>
+                <button
+                onclick="showToast('✅ Added to Cart')"
+                >
 
                     Add to Cart
 
@@ -391,7 +483,9 @@
 
                 </p>
 
-                <button>
+                <button
+                onclick="showToast('✅ Added to Cart')"
+                >
 
                     Add to Cart
 
@@ -424,7 +518,9 @@
 
                 </p>
 
-                <button>
+                <button
+                onclick="showToast('✅ Added to Cart')"
+                >
 
                     Add to Cart
 
@@ -492,6 +588,30 @@
                 .style.display = "none";
             }
         }
+    }
+
+    </script>
+
+
+    <!-- TOAST -->
+
+    <script>
+
+    function showToast(message) {
+
+        let toast = document.createElement("div");
+
+        toast.className = "toast";
+
+        toast.innerText = message;
+
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+
+            toast.remove();
+
+        }, 3000);
     }
 
     </script>

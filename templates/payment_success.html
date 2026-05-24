@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>
+
+        Payment Success
+
+    </title>
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <section class="payment-page">
+
+        <div class="payment-card">
+
+            <h1>
+
+                Yayyy! 🎉
+
+            </h1>
+
+            <h2>
+
+                Payment Successful ✅
+
+            </h2>
+
+            <p>
+
+                Transaction ID:
+                {{ transaction_id }}
+
+            </p>
+
+            <a href="/tracking">
+
+                <button>
+
+                    Go To Tracking 🚚
+
+                </button>
+
+            </a>
+
+            <br><br>
+
+            <a href="/home">
+
+                <button>
+
+                    Continue Shopping 🛒
+
+                </button>
+
+            </a>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+
+        My Orders
+
+    </title>
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            My Orders 📦
+
+        </div>
+
+    </div>
+
+
+    <!-- ORDERS SECTION -->
+
+    <section class="tracking-section">
+
+        <h1>
+
+            Order History 🚀
+
+        </h1>
+
+
+        {% for order in orders %}
+
+        <div class="tracking-card">
+
+            <h2>
+
+                {{ order[2] }}
+
+            </h2>
+
+            <p>
+
+                <strong>Customer:</strong>
+
+                {{ order[1] }}
+
+            </p>
+
+            <p>
+
+                <strong>Destination:</strong>
+
+                {{ order[3] }}
+
+            </p>
+
+            <p>
+
+                <strong>Priority:</strong>
+
+                {{ order[4] }}
+
+            </p>
+
+            <p>
+
+                <strong>Delivery:</strong>
+
+                {{ order[5] }}
+
+            </p>
+
+            <p>
+
+                <strong>Status:</strong>
+
+                {{ order[6] }}
+
+            </p>
+
+            <p>
+
+                <strong>Ordered At:</strong>
+
+                {{ order[7] }}
+
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+</body>
+
+</html>

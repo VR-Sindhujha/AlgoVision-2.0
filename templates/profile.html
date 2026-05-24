@@ -68,8 +68,73 @@
                 Smart Logistics Premium User 🚀
 
             </p>
+            <div class="address-box">
 
+    <h2>
 
+        Saved Address 📍
+
+    </h2>
+
+    <p>
+
+        {{ saved_address }}
+
+    </p>
+
+    <form method="POST" action="/save-address">
+
+        <input
+        type="text"
+        name="address"
+        placeholder="Enter Delivery Address"
+        required
+        >
+
+        <button type="submit">
+
+            Save Address 🚀
+
+        </button>
+
+    </form>
+
+</div>
+            <div class="profile-stats">
+
+                <div class="stat-card">
+
+                    <h2>
+
+                        {{ delivered_orders }}
+
+                    </h2>
+
+                    <p>
+
+                        Delivered Orders ✅
+
+                    </p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h2>
+
+                        {{ cancelled_orders }}
+
+                    </h2>
+
+                    <p>
+
+                        Cancelled Orders ❌
+
+                    </p>
+
+                </div>
+
+            </div>
             <!-- STATS -->
 
             <div class="profile-stats">

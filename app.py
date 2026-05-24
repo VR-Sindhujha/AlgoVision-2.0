@@ -1,3 +1,9 @@
+from werkzeug.security import (
+
+    generate_password_hash,
+
+    check_password_hash
+)
 from flask_jwt_extended import (
 
     JWTManager,
@@ -12,12 +18,13 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_socketio import SocketIO, emit
 import sqlite3
 import mysql.connector
-from datetime import datetime
+from datetime import datetime, timedelta
+import threading
+import time
 
 app = Flask(__name__)
-
-app.secret_key = "algo_secret_key"
-
+app.secret_key = "algo_super_secure_key"
+app.permanent_session_lifetime = timedelta(minutes=30)
 
 # JWT CONFIG
 
@@ -29,6 +36,40 @@ jwt = JWTManager(app)
 # SOCKET CONFIG
 
 socketio = SocketIO(app)
+# =========================
+# MY ORDERS
+# =========================
+
+@app.route("/my-orders")
+def my_orders():
+
+    if "user" not in session:
+
+        return redirect("/login")
+
+    connection = sqlite3.connect("algo.db")
+
+    cursor = connection.cursor()
+
+    cursor.execute("""
+
+        SELECT * FROM orders
+
+        ORDER BY id DESC
+
+    """)
+
+    orders = cursor.fetchall()
+
+    connection.close()
+
+    return render_template(
+
+        "my_orders.html",
+
+        orders=orders
+    )
+
 
 # =========================
 # MYSQL CONNECTION
@@ -111,7 +152,11 @@ products = {
 
         "resource_cost": 5,
 
-        "price": "1,499"
+        "price": "1,499",
+
+        "category": "Medical",
+
+        "stock": 5
     },
 
     "watch": {
@@ -130,7 +175,11 @@ products = {
 
         "resource_cost": 4,
 
-        "price": "24,999"
+        "price": "24,999",
+
+        "category": "Luxury",
+
+        "stock": 5
     },
 
     "grocery": {
@@ -149,7 +198,11 @@ products = {
 
         "resource_cost": 2,
 
-        "price": "2,999"
+        "price": "2,999",
+
+        "category": "Grocery",
+
+        "stock": 5
     },
 
     "electronics": {
@@ -168,7 +221,11 @@ products = {
 
         "resource_cost": 3,
 
-        "price": "15,999"
+        "price": "15,999",
+
+        "category": "Electronics",
+
+        "stock": 5
     },
 
     "food": {
@@ -187,7 +244,11 @@ products = {
 
         "resource_cost": 4,
 
-        "price": "799"
+        "price": "799",
+
+        "category": "Food",
+
+        "stock": 5
     }
 }
 
@@ -284,7 +345,9 @@ def create_database():
 
             delivery_speed TEXT,
 
-            status TEXT
+            status TEXT,
+
+            created_at TEXT
 
         )
 
@@ -303,7 +366,9 @@ def create_database():
 
             email TEXT UNIQUE,
 
-            password TEXT
+            password TEXT,
+
+            address TEXT
 
         )
 
@@ -407,7 +472,7 @@ def signup():
         email = request.form["email"]
 
         password = request.form["password"]
-
+        hashed_password = generate_password_hash(password)
         connection = sqlite3.connect("algo.db")
 
         cursor = connection.cursor()
@@ -432,7 +497,7 @@ def signup():
 
             email,
 
-            password
+            hashed_password
 
         ))
 
@@ -447,6 +512,10 @@ def signup():
         "signup.html"
     )
 
+
+# =========================
+# LOGIN
+# =========================
 
 # =========================
 # LOGIN
@@ -469,13 +538,11 @@ def login():
 
             SELECT * FROM users
 
-            WHERE email=? AND password=?
+            WHERE email=?
 
         """, (
 
             email,
-
-            password
 
         ))
 
@@ -483,18 +550,21 @@ def login():
 
         connection.close()
 
-        if user:
+        if user and check_password_hash(
+
+            user[3],
+
+            password
+        ):
 
             session["user"] = user[1]
-
+            session.permanent = True
             return redirect("/home")
 
     return render_template(
 
         "login.html"
     )
-
-
 # =========================
 # LOGOUT
 # =========================
@@ -531,9 +601,70 @@ def home():
 
         return redirect("/login")
 
+    category = request.args.get("category")
+
+    price_filter = request.args.get("price")
+
+    filtered_products = {}
+
+
+    for key, value in products.items():
+
+        matches_category = True
+
+        matches_price = True
+
+
+        # CATEGORY FILTER
+
+        if category:
+
+            matches_category = (
+
+                value["category"].lower()
+
+                ==
+
+                category.lower()
+            )
+
+
+        # PRICE FILTER
+
+        product_price = int(
+
+            value["price"].replace(",", "")
+        )
+
+
+        if price_filter == "low":
+
+            matches_price = product_price < 2000
+
+
+        elif price_filter == "medium":
+
+            matches_price = (
+
+                2000 <= product_price < 5000
+            )
+
+
+        elif price_filter == "high":
+
+            matches_price = product_price >= 5000
+
+
+        if matches_category and matches_price:
+
+            filtered_products[key] = value
+
+
     return render_template(
 
-        "home.html"
+        "home.html",
+
+        products=filtered_products
     )
 # =========================
 # REVIEWS STORAGE
@@ -638,9 +769,9 @@ def order(product_name):
 
     selected_product = products.get(product_name)
 
-    if selected_product is None:
+    if selected_product["stock"] <= 0:
 
-        return "Product Not Found"
+        return "Out of Stock ❌"
 
     if request.method == "POST":
 
@@ -680,11 +811,13 @@ def order(product_name):
 
                 delivery_speed,
 
-                status
+                status,
+
+                created_at
 
             )
 
-            VALUES (?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
 
         """, (
 
@@ -698,7 +831,9 @@ def order(product_name):
 
             delivery_speed,
 
-            "Ordered"
+            "Ordered",
+
+            datetime.now().strftime("%d-%m-%Y %H:%M")
 
         ))
 
@@ -706,6 +841,7 @@ def order(product_name):
 
         connection.commit()
 
+        selected_product["stock"] -= 1
         connection.close()
 
 
@@ -753,7 +889,7 @@ def order(product_name):
 
         return redirect(
 
-            url_for("tracking")
+            url_for("payment")
         )
 
     return render_template(
@@ -1018,30 +1154,72 @@ def admin():
         return redirect("/login")
 
 
+    connection = sqlite3.connect("algo.db")
+
+    cursor = connection.cursor()
+
+
+    # GET REAL ORDERS
+
+    cursor.execute("""
+
+        SELECT * FROM orders
+
+        ORDER BY id DESC
+
+    """)
+
+    orders = cursor.fetchall()
+
+
+    # ANALYTICS
+
+    delivered_count = 0
+
+    cancelled_count = 0
+
+
+    for order in orders:
+
+        if "Delivered" in order[6]:
+
+            delivered_count += 1
+
+        elif "Cancelled" in order[6]:
+
+            cancelled_count += 1
+
+
     admin_data = {
 
         "users": 12450,
 
-        "orders": 48920,
+        "orders": len(orders),
 
         "revenue": "92.5L",
 
-        "deliveries": 540,
+        "deliveries": delivered_count,
 
         "fraud": 18,
 
         "stock": "Stable ✅"
     }
 
+    connection.close()
+
 
     return render_template(
 
         "admin.html",
 
-        data=admin_data
+        data=admin_data,
+
+        orders=orders,
+
+        delivered_count=delivered_count,
+
+        cancelled_count=cancelled_count
     )
-
-
 # =========================
 # FRAUD DETECTION
 # =========================
@@ -1255,6 +1433,25 @@ def prediction():
         eta=eta
     )
 
+@app.route("/update-stock/<product_name>/<action>")
+def update_stock(product_name, action):
+
+    selected_product = products.get(product_name)
+
+    if selected_product:
+
+        if action == "increase":
+
+            selected_product["stock"] += 1
+
+        elif action == "decrease":
+
+            if selected_product["stock"] > 0:
+
+                selected_product["stock"] -= 1
+
+    return redirect("/inventory")
+
 
 # =========================
 # INVENTORY MANAGEMENT
@@ -1268,33 +1465,18 @@ def inventory():
         return redirect("/login")
 
 
-    inventory_items = [
+    inventory_items = []
 
-        {
-            "name": "Medicine Kit",
-            "stock": 45,
-            "image": "medicine.jpg"
-        },
+    for key, value in products.items():
 
-        {
-            "name": "Luxury Watch",
-            "stock": 12,
-            "image": "watch.jpg"
-        },
+        inventory_items.append({
 
-        {
-            "name": "Electronics Kit",
-            "stock": 4,
-            "image": "electronics.jpg"
-        },
+            "name": value["name"],
 
-        {
-            "name": "Food Package",
-            "stock": 32,
-            "image": "food.jpg"
-        }
+            "stock": value["stock"],
 
-    ]
+            "image": value["image"]
+        })
 
 
     return render_template(
@@ -1418,6 +1600,44 @@ def recommendations():
 
         recommendations=recommendations
     )
+
+@app.route("/save-address", methods=["POST"])
+def save_address():
+
+    if "user" not in session:
+
+        return redirect("/login")
+
+    address = request.form["address"]
+
+    username = session["user"]
+
+    connection = sqlite3.connect("algo.db")
+
+    cursor = connection.cursor()
+
+    cursor.execute("""
+
+        UPDATE users
+
+        SET address=?
+
+        WHERE username=?
+
+    """, (
+
+        address,
+
+        username
+    ))
+
+    connection.commit()
+
+    connection.close()
+
+    return redirect("/profile")
+
+
 # =========================
 # PROFILE PAGE
 # =========================
@@ -1438,14 +1658,68 @@ def profile():
 
     cursor = connection.cursor()
 
-    cursor.execute(
+    cursor.execute("""
 
-        "SELECT * FROM orders"
-    )
+        SELECT * FROM orders
+
+        WHERE LOWER(customer_name)=?
+
+        ORDER BY id DESC
+
+    """, (
+
+        username.lower(),
+
+    ))
 
     orders = cursor.fetchall()
 
-    connection.close()
+
+    # DELIVERY STATS
+
+    delivered_orders = 0
+
+    cancelled_orders = 0
+
+
+    for order in orders:
+
+        if "Delivered" in order[6]:
+
+            delivered_orders += 1
+
+        elif "Cancelled" in order[6]:
+
+            cancelled_orders += 1
+
+
+        # SAVED ADDRESS
+
+        cursor.execute("""
+
+            SELECT address
+
+            FROM users
+
+            WHERE LOWER(username)=?
+
+        """, (
+
+            username.lower(),
+
+        ))
+
+        address_data = cursor.fetchone()
+
+        saved_address = ""
+
+
+        if address_data and address_data[0]:
+
+            saved_address = address_data[0]
+
+
+        connection.close()
 
 
     # CART COUNT
@@ -1489,7 +1763,13 @@ def profile():
 
         cart_count=cart_count,
 
-        wishlist_count=wishlist_count
+        wishlist_count=wishlist_count,
+
+        delivered_orders=delivered_orders,
+
+        cancelled_orders=cancelled_orders,
+
+        saved_address=saved_address,
     )
 
 # =========================
@@ -1503,15 +1783,94 @@ def payment():
 
         return redirect("/login")
 
+    error = None
+
+
     if request.method == "POST":
 
-        return redirect("/success")
+        payment_method = request.form["payment_method"]
+
+        card_number = request.form["card_number"]
+
+        card_name = request.form["card_name"]
+
+        cvv = request.form["cvv"]
+
+
+        # EMPTY CHECK
+
+        if (
+
+            not payment_method
+
+            or
+
+            not card_name
+
+            or
+
+            not card_number
+
+            or
+
+            not cvv
+        ):
+
+            error = "Please fill all payment details ❌"
+
+
+        # CARD NUMBER CHECK
+
+        elif (
+
+            len(card_number) != 16
+
+            or
+
+            not card_number.isdigit()
+        ):
+
+            error = "Card Number must contain exactly 16 digits ❌"
+
+
+        # CVV CHECK
+
+        elif (
+
+            len(cvv) != 3
+
+            or
+
+            not cvv.isdigit()
+        ):
+
+            error = "CVV must contain exactly 3 digits ❌"
+
+
+        else:
+
+            transaction_id = (
+
+                "TXN"
+
+                +
+
+                datetime.now().strftime("%H%M%S")
+            )
+
+            return render_template(
+
+                "payment_success.html",
+
+                transaction_id=transaction_id
+            )
 
     return render_template(
 
-        "payment.html"
-    )
+        "payment.html",
 
+        error=error
+    )
 
 # =========================
 # SUCCESS PAGE
@@ -1562,6 +1921,48 @@ def update_status(order_id, new_status):
     return redirect("/tracking")
 
 # =========================
+# AUTO DELIVERY STATUS
+# =========================
+
+def auto_update_status(order_id):
+
+    statuses = [
+
+        "Packed 📦",
+
+        "Shipped 🚚",
+
+        "Delivered ✅"
+    ]
+
+    for status in statuses:
+
+        time.sleep(6)
+
+        connection = sqlite3.connect("algo.db")
+
+        cursor = connection.cursor()
+
+        cursor.execute("""
+
+            UPDATE orders
+
+            SET status=?
+
+            WHERE id=?
+
+        """, (
+
+            status,
+
+            order_id
+        ))
+
+        connection.commit()
+
+        connection.close()
+
+# =========================
 # TRACKING PAGE
 # =========================
 @app.route("/tracking")
@@ -1585,7 +1986,17 @@ def tracking():
     """)
 
     orders = cursor.fetchall()
+    for order in orders:
 
+        if order[6] == "Ordered":
+
+            threading.Thread(
+
+                target=auto_update_status,
+
+                args=(order[0],)
+
+            ).start()
     connection.close()
 
 
@@ -1595,6 +2006,35 @@ def tracking():
 
         orders=orders
     )
+
+# =========================
+# CANCEL ORDER
+# =========================
+
+@app.route("/cancel-order/<int:order_id>")
+def cancel_order(order_id):
+
+    connection = sqlite3.connect("algo.db")
+
+    cursor = connection.cursor()
+
+    cursor.execute("""
+
+        UPDATE orders
+
+        SET status = ?
+
+        WHERE id = ?
+
+    """, ("Cancelled ❌", order_id))
+
+    connection.commit()
+
+    connection.close()
+
+    return redirect("/tracking")
+
+
 # =========================
 # DASHBOARD
 # =========================
@@ -1772,6 +2212,25 @@ def add_review(product_name):
     review_text = request.form["review"]
 
     rating = request.form["rating"]
+
+
+    # CHECK EXISTING REVIEW
+
+    for review in reviews_db:
+
+        if (
+
+            review["user"] == username
+
+            and
+
+            review["product"] == product_name
+        ):
+
+            return "You already reviewed this product ⚠️"
+
+
+    # ADD REVIEW
 
     reviews_db.append({
 

@@ -113,7 +113,7 @@
 
                         </div>
 
-                    {% else %}
+                    {% elif item.stock > 0 %}
 
                         <div class="stock-status low">
 
@@ -121,7 +121,42 @@
 
                         </div>
 
+                    {% else %}
+
+                        <div class="stock-status out">
+
+                            Out Of Stock 🚫
+
+                        </div>
+
                     {% endif %}
+
+
+                    <!-- STOCK ACTIONS -->
+
+                    <div class="inventory-actions">
+
+                        <a href="/update-stock/{{ item.name.lower().replace(' ', '') }}/increase">
+
+                            <button>
+
+                                + Stock
+
+                            </button>
+
+                        </a>
+
+                        <a href="/update-stock/{{ item.name.lower().replace(' ', '') }}/decrease">
+
+                            <button>
+
+                                - Stock
+
+                            </button>
+
+                        </a>
+
+                    </div>
 
                 </div>
 

@@ -70,7 +70,92 @@
 
             <div class="admin-grid">
 
+            <div class="admin-orders">
 
+    <h2>
+
+        Live Orders 📦
+
+    </h2>
+
+    {% for order in orders %}
+
+    <div class="admin-order-card">
+
+        <h3>
+
+            {{ order[2] }}
+
+        </h3>
+
+        <p>
+
+            Customer:
+            {{ order[1] }}
+
+        </p>
+
+        <p>
+
+            Destination:
+            {{ order[3] }}
+
+        </p>
+
+        <p>
+
+            Status:
+            {{ order[6] }}
+
+        </p>
+        <div class="admin-actions">
+
+    <a href="/update-status/{{ order[0] }}/Packed 📦">
+
+        <button>
+
+            Pack 📦
+
+        </button>
+
+    </a>
+
+    <a href="/update-status/{{ order[0] }}/Shipped 🚚">
+
+        <button>
+
+            Ship 🚚
+
+        </button>
+
+    </a>
+
+    <a href="/update-status/{{ order[0] }}/Delivered ✅">
+
+        <button>
+
+            Deliver ✅
+
+        </button>
+
+    </a>
+
+    <a href="/cancel-order/{{ order[0] }}">
+
+        <button>
+
+            Cancel ❌
+
+        </button>
+
+    </a>
+
+</div>
+    </div>
+
+    {% endfor %}
+
+</div>
                 <!-- CARD -->
 
                 <div class="admin-card">
@@ -189,68 +274,97 @@
 
             <!-- TABLE -->
 
-            <div class="admin-table">
+<!-- TABLE -->
 
-                <h2>
+<div class="admin-table">
 
-                    Recent Orders 📦
+    <h2>
 
-                </h2>
+        Recent Orders 📦
 
-                <table>
+    </h2>
 
-                    <tr>
+    <table>
 
-                        <th>Order ID</th>
+        <tr>
 
-                        <th>Customer</th>
+            <th>Order ID</th>
 
-                        <th>Status</th>
+            <th>Customer</th>
 
-                        <th>Amount</th>
+            <th>Status</th>
 
-                    </tr>
+            <th>Amount</th>
 
-                    <tr>
+        </tr>
 
-                        <td>#1021</td>
+        {% for order in orders %}
 
-                        <td>Rahul</td>
+        <tr>
 
-                        <td>Delivered</td>
+            <td>
 
-                        <td>₹2400</td>
+                #{{ order[0] }}
 
-                    </tr>
+            </td>
 
-                    <tr>
+            <td>
 
-                        <td>#1022</td>
+                {{ order[1] }}
 
-                        <td>Ananya</td>
+            </td>
 
-                        <td>On The Way</td>
+            <td>
 
-                        <td>₹1800</td>
+                {{ order[6] }}
 
-                    </tr>
+            </td>
 
-                    <tr>
+            <td>
 
-                        <td>#1023</td>
+                ₹{{ order[7] }}
 
-                        <td>Vikram</td>
+            </td>
 
-                        <td>Packed</td>
+        </tr>
 
-                        <td>₹5200</td>
+        {% endfor %}
 
-                    </tr>
+    </table>
 
-                </table>
+</div>
 
-            </div>
+<div class="admin-card">
 
+    <h2>
+
+        Delivered Orders
+
+    </h2>
+
+    <span>
+
+        {{ delivered_count }}
+
+    </span>
+
+</div>
+
+<div class="admin-card">
+
+    <h2>
+
+        Cancelled Orders
+
+    </h2>
+
+    <span>
+
+        {{ cancelled_count }}
+
+    </span>
+
+</div>
         </div>
 
     </section>

@@ -3822,3 +3822,181 @@ body {
 
     font-weight: bold;
 }
+
+.toast {
+
+    position: fixed;
+
+    top: 20px;
+
+    right: 20px;
+
+    background: #111;
+
+    color: white;
+
+    padding: 15px 25px;
+
+    border-radius: 10px;
+
+    z-index: 9999;
+
+    font-weight: bold;
+
+    animation: slideIn 0.5s ease;
+
+}
+
+
+@keyframes slideIn {
+
+    from {
+
+        transform: translateX(100px);
+
+        opacity: 0;
+    }
+
+    to {
+
+        transform: translateX(0);
+
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .navbar {
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding: 20px;
+    }
+
+    .nav-buttons {
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    .products {
+
+        grid-template-columns: 1fr;
+
+        padding: 20px;
+    }
+
+    .card {
+
+        width: 100%;
+    }
+
+    .hero-content h1 {
+
+        font-size: 32px;
+    }
+
+    .hero-content p {
+
+        font-size: 16px;
+    }
+
+    .tracking-card {
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .cart-card {
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .product-page {
+
+        flex-direction: column;
+
+        padding: 20px;
+    }
+
+    .product-image img {
+
+        width: 100%;
+    }
+
+    .product-buttons {
+
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .product-buttons button {
+
+        width: 100%;
+    }
+
+    .category-bar {
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    input,
+    select,
+    button {
+
+        width: 100%;
+    }
+}
+
+.notification {
+
+    position: fixed;
+
+    top: 20px;
+
+    right: 20px;
+
+    background: #111;
+
+    color: white;
+
+    padding: 15px 25px;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    z-index: 9999;
+
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+
+    animation: slideIn 0.5s ease;
+}
+
+
+@keyframes slideIn {
+
+    from {
+
+        transform: translateX(100px);
+
+        opacity: 0;
+    }
+
+    to {
+
+        transform: translateX(0);
+
+        opacity: 1;
+    }
+}
