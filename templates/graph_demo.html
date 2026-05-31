@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>
+
+        Graph Demonstration
+
+    </title>
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<section class="tracking-section">
+
+    <h1>
+
+        🌍 Graph Demonstration
+
+    </h1>
+
+    <p class="hero-subtitle">
+
+        Logistics Network Modeling Using Graph Data Structure
+
+    </p>
+
+    <div class="dsa-grid">
+
+        <div class="dsa-card">
+
+            <h2>
+
+                🌍 Logistics Network
+
+            </h2>
+
+            <div class="graph-visual">
+
+                <div class="graph-node">
+
+                    🏭 Warehouse
+
+                </div>
+
+                <div class="graph-distance">
+
+                    {{ d1 }} km
+
+                </div>
+
+                <div class="graph-arrow">
+
+                    ↓
+
+                </div>
+
+                <div class="graph-node">
+
+                    🚚 {{ hub }}
+
+                </div>
+
+                <div class="graph-distance">
+
+                    {{ d2 }} km
+
+                </div>
+
+                <div class="graph-arrow">
+
+                    ↓
+
+                </div>
+
+                <div class="graph-node">
+
+                    📍 {{ destination }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="dsa-card">
+
+            <h2>
+
+                🔗 Graph Components
+
+            </h2>
+
+            <p>
+
+                <strong>Nodes:</strong>
+
+                3
+
+            </p>
+
+            <p>
+
+                🏭 Warehouse
+
+            </p>
+
+            <p>
+
+                🚚 Logistics Hub
+
+            </p>
+
+            <p>
+
+                📍 Customer Destination
+
+            </p>
+
+            <hr>
+
+            <p>
+
+                <strong>Edges:</strong>
+
+                2
+
+            </p>
+
+            <p>
+
+                Warehouse → Hub
+
+            </p>
+
+            <p>
+
+                Hub → Customer
+
+            </p>
+
+        </div>
+
+        <div class="dsa-card">
+
+            <h2>
+
+                🧠 Why Graph?
+
+            </h2>
+
+            <p>
+
+                Graph represents the
+                logistics network.
+
+            </p>
+
+            <p>
+
+                Warehouses, hubs and
+                destinations become
+                nodes.
+
+            </p>
+
+            <p>
+
+                Road connections become
+                edges.
+
+            </p>
+
+            <p>
+
+                Used before running
+                Dijkstra's Algorithm.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="success-card">
+
+        <h2>
+
+            🚚 Graph Usage In AlgoVision
+
+        </h2>
+
+        <p>
+
+            Customer places an order.
+
+        </p>
+
+        <p>
+
+            Graph creates route network.
+
+        </p>
+
+        <p>
+
+            Dijkstra finds shortest path.
+
+        </p>
+
+        <p>
+
+            Dynamic Programming optimizes ETA.
+
+        </p>
+
+        <p>
+
+            Final optimized route is delivered.
+
+        </p>
+
+    </div>
+
+    <div class="success-card">
+
+        <h2>
+
+            ⚡ Complexity
+
+        </h2>
+
+        <p>
+
+            Graph Traversal → O(V + E)
+
+        </p>
+
+        <p>
+
+            V = Nodes
+
+        </p>
+
+        <p>
+
+            E = Edges
+
+        </p>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>

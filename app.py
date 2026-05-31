@@ -778,7 +778,10 @@ def order(product_name):
         customer_name = request.form["customer_name"]
 
         destination = request.form["destination"]
+        session["destination"] = destination
+        session["product_name"] = selected_product["name"]
 
+        session["customer_name"] = customer_name
         priority = request.form["priority"]
 
         delivery_speed = request.form["delivery_speed"]
@@ -1520,7 +1523,103 @@ def live_tracking():
         "live_tracking.html"
     )
 
+@app.route("/dsa-solution")
+def dsa_solution():
 
+    destination = session.get(
+        "destination",
+        "Chennai"
+    )
+
+    city = destination.lower()
+
+    if "chennai" in city:
+
+        hub = "Chennai Central Hub"
+
+        warehouse_distance = 20
+        customer_distance = 15
+
+    elif "vellore" in city:
+
+        hub = "Vellore Logistics Hub"
+
+        warehouse_distance = 45
+        customer_distance = 20
+
+    elif "kerala" in city:
+
+        hub = "Kochi Distribution Hub"
+
+        warehouse_distance = 120
+        customer_distance = 40
+
+    else:
+
+        hub = "Regional Distribution Hub"
+
+        warehouse_distance = 50
+        customer_distance = 25
+
+    total_distance = (
+
+        warehouse_distance
+
+        +
+
+        customer_distance
+    )
+
+    route = f"Warehouse → {hub} → {destination}"
+
+    product_name = session.get(
+        "product_name",
+        "Unknown Product"
+    )
+
+    username = session.get(
+        "customer_name",
+        "Customer"
+    )
+
+    if total_distance <= 40:
+
+        eta = "12 Minutes"
+
+    elif total_distance <= 80:
+
+        eta = "25 Minutes"
+
+    elif total_distance <= 150:
+
+        eta = "45 Minutes"
+
+    else:
+
+        eta = "90 Minutes"
+
+    return render_template(
+
+        "dsa_solution.html",
+
+        destination=destination,
+
+        hub=hub,
+
+        route=route,
+
+        product=product_name,
+
+        customer=username,
+
+        eta=eta,
+
+        warehouse_distance=warehouse_distance,
+
+        customer_distance=customer_distance,
+
+        total_distance=total_distance
+    )
 # =========================
 # ANALYTICS DASHBOARD
 # =========================
@@ -1918,7 +2017,7 @@ def update_status(order_id, new_status):
 
     connection.close()
 
-    return redirect("/tracking")
+    return redirect("/live-tracking")
 
 # =========================
 # AUTO DELIVERY STATUS
@@ -2032,7 +2131,7 @@ def cancel_order(order_id):
 
     connection.close()
 
-    return redirect("/tracking")
+    return redirect("/live-tracking")
 
 
 # =========================
@@ -2195,7 +2294,290 @@ def dashboard():
 # =========================
 # RUN APP
 # =========================
+from datetime import datetime
 
+@app.route("/queue-demo")
+def queue_demo():
+
+    queue_data = queue_engine.get_queue()
+
+    return render_template(
+
+        "queue_demo.html",
+
+        queue_data=queue_data
+    )
+@app.route(
+
+    "/bst-demo",
+
+    methods=["GET", "POST"]
+
+)
+def bst_demo():
+
+    result = None
+
+    if request.method == "POST":
+
+        keyword = request.form["keyword"].lower()
+
+        result = bst_engine.search(
+
+            keyword
+        )
+
+    traversal = bst_engine.inorder_traversal()
+
+    return render_template(
+
+        "bst_demo.html",
+
+        result=result,
+
+        traversal=traversal
+    )
+
+@app.route("/heap-demo")
+def heap_demo():
+
+    heap_data = sorted(
+
+        heap_engine.get_all_orders()
+
+    )
+
+    highest = heap_engine.get_highest_priority()
+
+    return render_template(
+
+        "heap_demo.html",
+
+        heap_data=heap_data,
+
+        highest=highest
+    )
+
+@app.route("/hashmap-demo")
+def hashmap_demo():
+
+    orders = hashmap_engine.get_all_orders()
+
+    return render_template(
+
+        "hashmap_demo.html",
+
+        orders=orders
+    )
+@app.route("/graph-demo")
+def graph_demo():
+
+    destination = session.get(
+        "destination",
+        "Chennai"
+    )
+
+    city = destination.lower()
+
+    if "chennai" in city:
+
+        hub = "Chennai Central Hub"
+
+        d1 = 30
+        d2 = 15
+
+    elif "vellore" in city:
+
+        hub = "Vellore Logistics Hub"
+
+        d1 = 45
+        d2 = 20
+
+    elif "kerala" in city:
+
+        hub = "Kochi Distribution Hub"
+
+        d1 = 70
+        d2 = 35
+
+    else:
+
+        hub = "Regional Hub"
+
+        d1 = 40
+        d2 = 20
+
+    return render_template(
+
+        "graph_demo.html",
+
+        destination=destination,
+
+        hub=hub,
+
+        d1=d1,
+
+        d2=d2
+    )
+@app.route("/demo-graph")
+def demo_graph():
+
+    return """
+    Warehouse
+      |
+    Chennai Hub
+      |
+    Customer
+    """
+
+@app.route("/dijkstra-demo")
+def dijkstra_demo():
+
+    destination = session.get(
+        "destination",
+        "CHENNAI"
+    )
+
+    city = destination.lower()
+
+    graph = {
+
+        "Warehouse": []
+    }
+
+    if "vellore" in city:
+
+        hub = "Vellore Hub"
+
+        graph["Warehouse"] = [
+
+            (hub, 45)
+        ]
+
+        graph[hub] = [
+
+            ("VELLORE", 20)
+        ]
+
+        graph["VELLORE"] = []
+
+        end = "VELLORE"
+
+    elif "kerala" in city:
+
+        hub = "Kochi Hub"
+
+        graph["Warehouse"] = [
+
+            (hub, 70)
+        ]
+
+        graph[hub] = [
+
+            ("KERALA", 35)
+        ]
+
+        graph["KERALA"] = []
+
+        end = "KERALA"
+
+    else:
+
+        hub = "Chennai Hub"
+
+        graph["Warehouse"] = [
+
+            (hub, 30)
+        ]
+
+        graph[hub] = [
+
+            ("CHENNAI", 15)
+        ]
+
+        graph["CHENNAI"] = []
+
+        end = "CHENNAI"
+
+    path, distance = dijkstra_engine.shortest_path(
+
+        graph,
+
+        "Warehouse",
+
+        end
+    )
+
+    return render_template(
+
+        "dijkstra_demo.html",
+
+        path=path,
+
+        distance=distance,
+
+        destination=destination
+    )
+@app.route("/dp-demo")
+def dp_demo():
+
+    destination = session.get(
+        "destination",
+        "CHENNAI"
+    )
+
+    city = destination.lower()
+
+    if "vellore" in city:
+
+        distance = 65
+
+        traffic = "Medium"
+
+        priority = "High"
+
+        eta = "25 Minutes"
+
+    elif "kerala" in city:
+
+        distance = 105
+
+        traffic = "High"
+
+        priority = "High"
+
+        eta = "40 Minutes"
+
+    else:
+
+        distance = 45
+
+        traffic = "Low"
+
+        priority = "High"
+
+        eta = "18 Minutes"
+
+    return render_template(
+
+        "dp_demo.html",
+
+        destination=destination,
+
+        distance=distance,
+
+        traffic=traffic,
+
+        priority=priority,
+
+        eta=eta
+    )
+@app.route("/dsa-labs")
+def dsa_labs():
+
+    return render_template(
+        "dsa_labs.html"
+    )
 # =========================
 # ADD REVIEW
 # =========================

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>
+
+        Heap Demonstration
+
+    </title>
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<section class="tracking-section">
+
+    <h1>
+
+        🚀 Heap Demonstration
+
+    </h1>
+
+    <p class="hero-subtitle">
+
+        Priority Scheduling Engine
+
+    </p>
+
+    {% if heap_data %}
+
+    <div class="success-card">
+
+        <h2>
+
+            🏆 Current Priority Ranking
+
+        </h2>
+
+    </div>
+
+    <div class="dsa-grid">
+
+        {% for priority, timestamp, product in heap_data %}
+
+        <div class="dsa-card">
+
+            <h2>
+
+                Rank #{{ loop.index }}
+
+            </h2>
+
+            <p>
+
+                <strong>Product:</strong>
+
+                {{ product }}
+
+            </p>
+
+            <p>
+
+                <strong>Priority Score:</strong>
+
+                {{ -priority }}
+
+            </p>
+
+            <p>
+
+                <strong>Ordered At:</strong>
+
+                {{ timestamp }}
+
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="success-card">
+
+        <h2>
+
+            🚚 Next Order To Dispatch
+
+        </h2>
+
+        <p>
+
+            <strong>Product:</strong>
+
+            {{ highest[2] }}
+
+        </p>
+
+        <p>
+
+            <strong>Priority:</strong>
+
+            {{ -highest[0] }}
+
+        </p>
+
+        <p>
+
+            <strong>Timestamp:</strong>
+
+            {{ highest[1] }}
+
+        </p>
+
+        <hr>
+
+        <p>
+
+            Selected because it has the highest priority score.
+
+        </p>
+
+    </div>
+
+    {% else %}
+
+    <div class="success-card">
+
+        <h2>
+
+            No Orders Available
+
+        </h2>
+
+    </div>
+
+    {% endif %}
+
+    <div class="success-card">
+
+        <h2>
+
+            🚀 Heap Usage In AlgoVision
+
+        </h2>
+
+        <p>
+
+            Customer places order
+
+        </p>
+
+        <p>
+
+            Heap assigns priority
+
+        </p>
+
+        <p>
+
+            Emergency Delivery → 100
+
+        </p>
+
+        <p>
+
+            VIP Delivery → 90
+
+        </p>
+
+        <p>
+
+            Fast Delivery → 80
+
+        </p>
+
+        <p>
+
+            Normal Delivery → 50
+
+        </p>
+
+    </div>
+
+    <div class="success-card">
+
+        <h2>
+
+            ⚖ Heap Decision Logic
+
+        </h2>
+
+        <p>
+
+            Rule 1: Higher Priority Wins
+
+        </p>
+
+        <p>
+
+            Rule 2: If priorities are equal,
+            earlier timestamp wins.
+
+        </p>
+
+        <p>
+
+            Example:
+
+            Two Medicine Kits with
+            Priority 100.
+
+        </p>
+
+        <p>
+
+            Order placed first gets
+            dispatched first.
+
+        </p>
+
+    </div>
+
+    <div class="success-card">
+
+        <h2>
+
+            🧠 Why Heap?
+
+        </h2>
+
+        <p>
+
+            Heap schedules deliveries
+            based on priority.
+
+        </p>
+
+        <p>
+
+            Higher priority orders
+            are processed first.
+
+        </p>
+
+        <p>
+
+            If priorities are equal,
+            timestamp is used.
+
+        </p>
+
+        <p>
+
+            Priority → Timestamp → Execution
+
+        </p>
+
+        <hr>
+
+        <p>
+
+            Insert → O(log n)
+
+        </p>
+
+        <p>
+
+            Remove → O(log n)
+
+        </p>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>

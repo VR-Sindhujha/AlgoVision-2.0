@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Queue Demonstration</title>
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<section class="tracking-section">
+
+    <h1>
+
+        📥 Queue Demonstration
+
+    </h1>
+
+    <p class="hero-subtitle">
+
+        FIFO (First In First Out) Order Processing Engine
+
+    </p>
+
+    {% if queue_data %}
+
+    <div class="dsa-grid">
+
+        {% for product, timestamp in queue_data %}
+
+        <div class="dsa-card">
+
+            <h2>
+
+                📦 {{ product }}
+
+            </h2>
+
+            <p>
+
+                <strong>Queue Position:</strong>
+
+                {{ loop.index }}
+
+            </p>
+
+            <p>
+
+                <strong>Arrival Time:</strong>
+
+                {{ timestamp }}
+
+            </p>
+
+            <p>
+
+                <strong>Status:</strong>
+
+                Waiting In Queue
+
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="success-card">
+
+        <h2>
+
+            🥇 First Arrival In Queue
+
+        </h2>
+
+        <p>
+
+            <strong>Product:</strong>
+
+            {{ queue_data[0][0] }}
+
+        </p>
+
+        <p>
+
+            <strong>Arrival Time:</strong>
+
+            {{ queue_data[0][1] }}
+
+        </p>
+
+        <p>
+
+            This order will be processed first
+            because Queue follows FIFO.
+
+        </p>
+
+    </div>
+
+    {% else %}
+
+    <div class="success-card">
+
+        <h2>
+
+            No Orders In Queue
+
+        </h2>
+
+    </div>
+
+    {% endif %}
+
+    <div class="success-card">
+
+        <h2>
+
+            🧠 Queue Explanation
+
+        </h2>
+
+        <p>
+
+            Queue follows FIFO
+            (First In First Out).
+
+        </p>
+
+        <p>
+
+            The first order that enters
+            the queue gets processed first.
+
+        </p>
+
+        <p>
+
+            Priority is NOT considered here.
+
+        </p>
+
+        <p>
+
+            Heap handles priority scheduling separately.
+
+        </p>
+
+        <hr>
+
+        <p>
+
+            <strong>Enqueue:</strong> O(1)
+
+        </p>
+
+        <p>
+
+            <strong>Dequeue:</strong> O(1)
+
+        </p>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>

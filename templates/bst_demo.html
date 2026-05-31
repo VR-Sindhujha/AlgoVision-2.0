@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>
+
+        BST Demonstration
+
+    </title>
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<section class="tracking-section">
+
+    <h1>
+
+        🌳 BST Demonstration
+
+    </h1>
+
+    <p class="hero-subtitle">
+
+        Binary Search Tree Product Search Engine
+
+    </p>
+
+    <form method="POST">
+
+        <input
+
+            type="text"
+
+            name="keyword"
+
+            placeholder="Search Product..."
+
+            required
+
+        >
+
+        <button type="submit">
+
+            Search
+
+        </button>
+
+    </form>
+
+    {% if result %}
+
+    <div class="success-card">
+
+        <h2>
+
+            ✅ Product Found
+
+        </h2>
+
+        <p>
+
+            {{ result["name"] }}
+
+        </p>
+
+        <p>
+
+            {{ result["delivery"] }}
+
+        </p>
+
+        <p>
+
+            ₹ {{ result["price"] }}
+
+        </p>
+
+    </div>
+
+    {% endif %}
+
+    <div class="success-card">
+
+        <div class="success-card">
+
+    <h2>
+
+        🌳 BST Structure
+
+    </h2>
+
+<pre>
+
+              medicine
+
+             /        \
+
+       grocery       watch
+
+        /
+
+electronics
+
+        \
+
+        food
+
+</pre>
+
+</div>
+<div class="success-card">
+
+    <h2>
+
+        🔄 Inorder Traversal
+
+    </h2>
+
+    <p>
+
+        {% for node in traversal %}
+
+            {{ node }}
+
+            →
+
+        {% endfor %}
+
+    </p>
+
+</div>
+
+<div class="success-card">
+
+    <h2>
+
+        ⚡ Search Performance
+
+    </h2>
+
+    <p>
+
+        Linear Search → O(n)
+
+    </p>
+
+    <p>
+
+        BST Search → O(log n)
+
+    </p>
+
+    <p>
+
+        Faster product retrieval
+        for large catalogs.
+
+    </p>
+
+</div>
+
+        <p>
+
+            {% for node in traversal %}
+
+                {{ node }}
+
+                →
+
+            {% endfor %}
+
+        </p>
+
+    </div>
+    <div class="success-card">
+
+    <h2>
+
+        🔍 Search Query
+
+    </h2>
+
+    <p>
+
+        {{ request.form["keyword"] }}
+
+    </p>
+
+</div>
+<div class="success-card">
+
+    <h2>
+
+        🏢 BST Usage In AlgoVision
+
+    </h2>
+
+    <p>
+
+        Module:
+        Product Search Engine
+
+    </p>
+
+    <p>
+
+        User searches product
+        using search bar.
+
+    </p>
+
+    <p>
+
+        BST locates product
+        faster than linear search.
+
+    </p>
+
+</div>
+
+    <div class="success-card">
+
+        <h2>
+
+            🧠 Why BST?
+
+        </h2>
+
+        <p>
+
+            BST stores products
+            in sorted order.
+
+        </p>
+
+        <p>
+
+            Used in the product
+            search functionality.
+
+        </p>
+
+        <p>
+
+            Linear Search → O(n)
+
+        </p>
+
+        <p>
+
+            BST Search → O(log n)
+
+        </p>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>

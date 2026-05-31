@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>
+
+        HashMap Demonstration
+
+    </title>
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<section class="tracking-section">
+
+    <h1>
+
+        🔐 HashMap Demonstration
+
+    </h1>
+
+    <p class="hero-subtitle">
+
+        Instant Order Lookup Engine
+
+    </p>
+
+    {% for order_id, data in orders.items() %}
+
+    <div class="dsa-card">
+
+        <h2>
+
+            🆔 Order {{ order_id }}
+
+        </h2>
+
+        <p>
+
+            <strong>Customer:</strong>
+
+            {{ data.customer if data.customer else data["customer"] }}
+
+        </p>
+
+        <p>
+
+            <strong>Product:</strong>
+
+            {{ data.product if data.product else data["product"] }}
+
+        </p>
+
+        <p>
+
+            <strong>Destination:</strong>
+
+            {{ data.destination if data.destination else data["destination"] }}
+
+        </p>
+
+        <p>
+
+            <strong>Priority:</strong>
+
+            {{ data.priority if data.priority else data["priority"] }}
+
+        </p>
+
+        <p>
+
+            <strong>Timestamp:</strong>
+
+            {{ data.timestamp if data.timestamp else data["timestamp"] }}
+
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+    <div class="success-card">
+
+        <h2>
+
+            🔑 Key → Value Mapping
+
+        </h2>
+
+        <p>
+
+            Order ID acts as the Key.
+
+        </p>
+
+        <p>
+
+            Order Details act as the Value.
+
+        </p>
+
+        <p>
+
+            Example:
+
+        </p>
+
+        <p>
+
+            15 → Order Information
+
+        </p>
+
+    </div>
+
+    <div class="success-card">
+
+        <h2>
+
+            ⚡ Lookup Performance
+
+        </h2>
+
+        <p>
+
+            HashMap Lookup → O(1)
+
+        </p>
+
+        <p>
+
+            Instant retrieval without
+            traversing all orders.
+
+        </p>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>

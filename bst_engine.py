@@ -77,3 +77,45 @@ class BSTEngine:
                 node.right,
                 result
             )
+    def search(self, key):
+
+        return self._search(
+
+            self.root,
+
+            key
+        )
+
+
+    def _search(
+
+        self,
+
+        node,
+
+        key
+    ):
+
+        if node is None:
+
+            return None
+
+        if node.key == key:
+
+            return node.product
+
+        if key < node.key:
+
+            return self._search(
+
+                node.left,
+
+                key
+            )
+
+        return self._search(
+
+            node.right,
+
+            key
+        )      

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>
+
+        Dynamic Programming Demonstration
+
+    </title>
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<section class="tracking-section">
+
+    <h1>
+
+        🧠 Dynamic Programming
+
+    </h1>
+
+    <p class="hero-subtitle">
+
+        Delivery ETA Optimization Engine
+
+    </p>
+
+    <div class="dsa-grid">
+
+        <div class="dsa-card">
+
+            <h2>
+
+                📍 Delivery Information
+
+            </h2>
+
+            <p>
+
+                Destination:
+
+                {{ destination }}
+
+            </p>
+
+            <p>
+
+                Distance:
+
+                {{ distance }} km
+
+            </p>
+
+        </div>
+
+        <div class="dsa-card">
+
+            <h2>
+
+                🚦 Optimization Factors
+
+            </h2>
+
+            <p>
+
+                Traffic:
+
+                {{ traffic }}
+
+            </p>
+
+            <p>
+
+                Priority:
+
+                {{ priority }}
+
+            </p>
+
+        </div>
+
+        <div class="dsa-card">
+
+            <h2>
+
+                ⏱ Optimized ETA
+
+            </h2>
+
+            <h1>
+
+                {{ eta }}
+
+            </h1>
+
+        </div>
+
+    </div>
+
+    <div class="success-card">
+
+        <h2>
+
+            🚀 DP Usage In AlgoVision
+
+        </h2>
+
+        <p>
+
+            Distance, traffic and
+            delivery priority are evaluated.
+
+        </p>
+
+        <p>
+
+            Previously computed values
+            are reused.
+
+        </p>
+
+        <p>
+
+            Recalculation is avoided.
+
+        </p>
+
+        <p>
+
+            Fastest ETA is generated.
+
+        </p>
+
+    </div>
+
+    <div class="success-card">
+
+        <h2>
+
+            🧠 Why Dynamic Programming?
+
+        </h2>
+
+        <p>
+
+            Dynamic Programming breaks
+            large optimization problems
+            into smaller subproblems.
+
+        </p>
+
+        <p>
+
+            Results are reused instead
+            of recomputing repeatedly.
+
+        </p>
+
+        <p>
+
+            Used for delivery ETA
+            optimization in AlgoVision.
+
+        </p>
+
+    </div>
+
+    <div class="success-card">
+
+        <h2>
+
+            ⚡ Complexity
+
+        </h2>
+
+        <p>
+
+            O(n²)
+
+        </p>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>

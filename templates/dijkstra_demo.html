@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>
+
+        Dijkstra Demonstration
+
+    </title>
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<section class="tracking-section">
+
+    <h1>
+
+        🛣 Dijkstra Demonstration
+
+    </h1>
+
+    <p class="hero-subtitle">
+
+        Shortest Path Optimization Engine
+
+    </p>
+
+    <div class="dsa-grid">
+
+        <div class="dsa-card">
+
+            <h2>
+
+                🚚 Shortest Route Found
+
+            </h2>
+
+            {% for node in path %}
+
+                <div class="graph-node">
+
+                    {{ node }}
+
+                </div>
+
+                {% if not loop.last %}
+
+                <div class="graph-arrow">
+
+                    ↓
+
+                </div>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+
+        <div class="dsa-card">
+
+            <h2>
+
+                📏 Route Statistics
+
+            </h2>
+
+            <p>
+
+                Source:
+                Warehouse
+
+            </p>
+
+            <p>
+
+                Destination:
+                {{ destination }}
+
+            </p>
+
+            <p>
+
+                Total Distance:
+                {{ distance }} km
+
+            </p>
+
+        </div>
+
+        <div class="dsa-card">
+
+            <h2>
+
+                🧠 Why Dijkstra?
+
+            </h2>
+
+            <p>
+
+                Evaluates all
+                possible paths.
+
+            </p>
+
+            <p>
+
+                Selects minimum
+                distance route.
+
+            </p>
+
+            <p>
+
+                Used in AlgoVision
+                Route Optimization.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="success-card">
+
+        <h2>
+
+            ⚙ Algorithm Execution Flow
+
+        </h2>
+
+        <p>
+
+            1. Start at Warehouse
+
+        </p>
+
+        <p>
+
+            2. Explore nearest node
+
+        </p>
+
+        <p>
+
+            3. Update distances
+
+        </p>
+
+        <p>
+
+            4. Reach destination
+
+        </p>
+
+        <p>
+
+            5. Return shortest path
+
+        </p>
+
+    </div>
+
+    <div class="success-card">
+
+        <h2>
+
+            ⚡ Complexity
+
+        </h2>
+
+        <p>
+
+            O(E log V)
+
+        </p>
+
+        <p>
+
+            E = Edges
+
+        </p>
+
+        <p>
+
+            V = Vertices
+
+        </p>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>

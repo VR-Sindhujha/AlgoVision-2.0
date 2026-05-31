@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>DSA Solution</title>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="dsa-container">
+
+    <h1 class="dsa-title">
+
+        🚀 Delivery Optimized Successfully
+
+    </h1>
+
+<div class="success-card">
+
+    <h2>
+
+        📦 Order Summary
+
+    </h2>
+
+    <p>
+
+        <strong>Product:</strong>
+
+        {{ product }}
+
+    </p>
+
+    <p>
+
+        <strong>Customer:</strong>
+
+        {{ customer }}
+
+    </p>
+
+    <p>
+
+        <strong>Estimated Delivery Time:</strong>
+
+        {{ eta }}
+
+    </p>
+
+    <p>
+
+        <strong>Optimized Route:</strong>
+
+        {{ route }}
+
+    </p>
+
+    <p>
+
+        <strong>Status:</strong>
+
+        Delivery Optimized Using DSA ✅
+
+    </p>
+
+</div>
+
+    <div class="pipeline-section">
+
+    <h2>🔄 DSA Pipeline Used For This Order</h2>
+
+    <div class="pipeline">
+
+        <div class="pipe-card">Queue</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="pipe-card">HashMap</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="pipe-card">Array</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="pipe-card">BST</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="pipe-card">Heap</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="pipe-card">Graph</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="pipe-card">Dijkstra</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="pipe-card">Dynamic Programming</div>
+
+    </div>
+<div class="dsa-grid">
+
+    <div class="dsa-card">
+
+        <h2>📥 Queue</h2>
+
+        <p><strong>Purpose:</strong> Stores incoming orders</p>
+
+        <p><strong>Project Usage:</strong> Stores customer orders before processing</p>
+
+        <p>
+
+    <strong>Example:</strong>
+
+    {{ product }} entered order queue
+
+</p>
+
+        <p><strong>Complexity:</strong> O(1)</p>
+
+    </div>
+
+    <div class="dsa-card">
+
+        <h2>🔐 HashMap</h2>
+
+        <p><strong>Purpose:</strong> Fast product lookup</p>
+
+        <p><strong>Project Usage:</strong> Maps Product IDs to product information</p>
+
+        <p>
+
+    <strong>Example:</strong>
+
+    Product → {{ product }}
+
+</p>
+
+        <p><strong>Complexity:</strong> O(1)</p>
+
+    </div>
+
+    <div class="dsa-card">
+
+        <h2>📦 Array</h2>
+
+        <p><strong>Purpose:</strong> Product Catalog Storage</p>
+
+        <p><strong>Project Usage:</strong> Stores products displayed on homepage</p>
+
+        <p><strong>Example:</strong> Food Package, Medicine Kit, Grocery Pack</p>
+
+        <p><strong>Complexity:</strong> O(1) Access</p>
+
+    </div>
+
+    <div class="dsa-card">
+
+        <h2>🌳 BST</h2>
+
+        <p><strong>Purpose:</strong> Fast Product Search</p>
+
+        <p><strong>Project Usage:</strong> Powers the search functionality</p>
+
+        <p><strong>Example:</strong> Search "Grocery" → Grocery Pack</p>
+
+        <p><strong>Complexity:</strong> O(log n)</p>
+
+    </div>
+
+    <div class="dsa-card">
+
+        <h2>🚀 Heap</h2>
+
+        <p><strong>Purpose:</strong> Priority Scheduling</p>
+
+        <p><strong>Project Usage:</strong> Prioritizes urgent deliveries</p>
+
+        <p><strong>Example:</strong> Medicine Kit → Priority 1, Food Package → Priority 2</p>
+
+        <p><strong>Complexity:</strong> O(log n)</p>
+
+    </div>
+
+    <div class="dsa-card">
+
+        <h2>🌍 Graph</h2>
+
+        <p><strong>Purpose:</strong> Logistics Network Representation</p>
+
+        <p><strong>Project Usage:</strong> Models warehouses, hubs and destinations</p>
+
+        <p><strong>Nodes:</strong> Warehouse, Hub, Customer</p>
+
+        <p><strong>Edges:</strong> Road Connections</p>
+
+    </div>
+
+    <div class="dsa-card">
+
+    <h2>🛣 Dijkstra</h2>
+
+    <p>
+
+        <strong>Purpose:</strong>
+
+        Shortest Path Calculation
+
+    </p>
+
+    <p>
+
+        <strong>Project Usage:</strong>
+
+        Finds optimal delivery route
+
+    </p>
+
+    <p>
+
+    <strong>Route:</strong>
+
+    {{ route }}
+
+</p>
+
+    <p>
+
+        <strong>Complexity:</strong>
+
+        O(E log V)
+
+    </p>
+
+</div>
+
+    <div class="dsa-card">
+
+        <h2>🧠 Dynamic Programming</h2>
+
+        <p><strong>Purpose:</strong> Delivery Optimization</p>
+
+        <p><strong>Project Usage:</strong> Calculates minimum delivery time and cost</p>
+
+        <p><strong>Input:</strong> Distance + Traffic + Priority</p>
+
+        <p><strong>Output:</strong> Optimized ETA</p>
+
+        <p><strong>Complexity:</strong> O(n²)</p>
+
+    </div>
+    <div class="dsa-card">
+
+    <h2>🌍 Graph Visualization</h2>
+
+    <div class="graph-visual">
+
+        <div class="graph-node">
+            Warehouse
+        </div>
+
+        <div class="graph-arrow">
+            ↓
+        </div>
+
+        <div class="graph-node">
+            {{ hub }}
+        </div>
+
+        <div class="graph-arrow">
+            ↓
+        </div>
+
+        <div class="graph-node">
+            {{ destination }}
+        </div>
+
+    </div>
+    <div class="dsa-card">
+
+    <h2>
+
+        📍 Route Distance Analysis
+
+    </h2>
+
+    <p>
+
+        <strong>
+
+            Warehouse → {{ hub }}
+
+        </strong>
+
+        = {{ warehouse_distance }} km
+
+    </p>
+
+    <p>
+
+        <strong>
+
+            {{ hub }} → {{ destination }}
+
+        </strong>
+
+        = {{ customer_distance }} km
+
+    </p>
+
+    <p>
+
+        <strong>
+
+            Total Distance:
+
+            {{ total_distance }} km
+
+        </strong>
+
+    </p>
+
+</div>
+    <p>
+        Nodes: Warehouse, Hub, Customer
+    </p>
+
+    <p>
+        Edges: Road Connections
+    </p>
+
+</div>
+
+</div>
+<div class="execution-flow">
+
+    <h2>
+
+        🚚 Real Delivery Execution Flow
+
+    </h2>
+
+    <div class="pipeline">
+
+        <div class="pipe-card">
+
+            Customer Places Order
+
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="pipe-card">
+
+            Queue Stores Order
+
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="pipe-card">
+
+            HashMap Fetches Product
+
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="pipe-card">
+
+            Array Displays Catalog
+
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="pipe-card">
+
+            BST Searches Product
+
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="pipe-card">
+
+            Heap Assigns Priority
+
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="pipe-card">
+
+            Graph Builds Route
+
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="pipe-card">
+
+            Dijkstra Finds Route
+
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="pipe-card">
+
+            DP Optimizes ETA
+
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="pipe-card">
+
+            Delivery Completed ✅
+
+        </div>
+
+    </div>
+
+</div>
+<div class="complexity-section">
+
+    <h2>📊 Algorithm Complexity Report</h2>
+
+    <table class="complexity-table">
+
+        <tr>
+
+            <th>DSA Structure</th>
+
+            <th>Complexity</th>
+
+        </tr>
+
+        <tr>
+
+            <td>Queue</td>
+
+            <td>O(1)</td>
+
+        </tr>
+
+        <tr>
+
+            <td>HashMap</td>
+
+            <td>O(1)</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Array</td>
+
+            <td>O(1)</td>
+
+        </tr>
+
+        <tr>
+
+            <td>BST</td>
+
+            <td>O(log n)</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Heap</td>
+
+            <td>O(log n)</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Graph</td>
+
+            <td>O(V + E)</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Dijkstra</td>
+
+            <td>O(E log V)</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Dynamic Programming</td>
+
+            <td>O(n²)</td>
+
+        </tr>
+
+    </table>
+
+</div>
+<div class="dsa-card">
+
+    <h2>
+
+        🎯 Why Each DSA Was Used
+
+    </h2>
+
+    <ul>
+
+        <li>
+            Queue → Manages incoming orders
+        </li>
+
+        <li>
+            HashMap → Instant product lookup
+        </li>
+
+        <li>
+            Array → Stores product catalog
+        </li>
+
+        <li>
+            BST → Fast product searching
+        </li>
+
+        <li>
+            Heap → Delivery prioritization
+        </li>
+
+        <li>
+            Graph → Logistics network modeling
+        </li>
+
+        <li>
+            Dijkstra → Shortest path routing
+        </li>
+
+        <li>
+            Dynamic Programming → ETA optimization
+        </li>
+
+    </ul>
+
+</div>
+<div class="summary-card">
+
+    <h2>
+
+        🏆 AlgoVision 2.0 Summary
+
+    </h2>
+
+    <p>
+
+        Successfully demonstrated integration of:
+
+    </p>
+
+    <p>
+
+        ✅ Queue
+
+    </p>
+
+    <p>
+
+        ✅ HashMap
+
+    </p>
+
+    <p>
+
+        ✅ Array
+
+    </p>
+
+    <p>
+
+        ✅ BST
+
+    </p>
+
+    <p>
+
+        ✅ Heap
+
+    </p>
+
+    <p>
+
+        ✅ Graph
+
+    </p>
+
+    <p>
+
+        ✅ Dijkstra
+
+    </p>
+
+    <p>
+
+        ✅ Dynamic Programming
+
+    </p>
+
+    <p>
+
+        🚀 Industry Use Case:
+        Logistics + E-Commerce Optimization
+
+    </p>
+
+</div>
+</div>
+
+</div>
+
+</body>
+
+</html>
