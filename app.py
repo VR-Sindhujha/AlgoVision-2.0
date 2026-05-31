@@ -1757,6 +1757,8 @@ def profile():
 
     cursor = connection.cursor()
 
+    # GET USER ORDERS
+
     cursor.execute("""
 
         SELECT * FROM orders
@@ -1773,13 +1775,11 @@ def profile():
 
     orders = cursor.fetchall()
 
-
     # DELIVERY STATS
 
     delivered_orders = 0
 
     cancelled_orders = 0
-
 
     for order in orders:
 
@@ -1791,35 +1791,31 @@ def profile():
 
             cancelled_orders += 1
 
+    # SAVED ADDRESS
 
-        # SAVED ADDRESS
+    saved_address = ""
 
-        cursor.execute("""
+    cursor.execute("""
 
-            SELECT address
+        SELECT address
 
-            FROM users
+        FROM users
 
-            WHERE LOWER(username)=?
+        WHERE LOWER(username)=?
 
-        """, (
+    """, (
 
-            username.lower(),
+        username.lower(),
 
-        ))
+    ))
 
-        address_data = cursor.fetchone()
+    address_data = cursor.fetchone()
 
-        saved_address = ""
+    if address_data and address_data[0]:
 
+        saved_address = address_data[0]
 
-        if address_data and address_data[0]:
-
-            saved_address = address_data[0]
-
-
-        connection.close()
-
+    connection.close()
 
     # CART COUNT
 
@@ -1832,7 +1828,6 @@ def profile():
 
     cart_count = len(cart_items)
 
-
     # WISHLIST COUNT
 
     wishlist_items = session.get(
@@ -1844,11 +1839,9 @@ def profile():
 
     wishlist_count = len(wishlist_items)
 
-
     # TOTAL ORDERS
 
     total_orders = len(orders)
-
 
     return render_template(
 
@@ -1868,9 +1861,8 @@ def profile():
 
         cancelled_orders=cancelled_orders,
 
-        saved_address=saved_address,
+        saved_address=saved_address
     )
-
 # =========================
 # PAYMENT PAGE
 # =========================
