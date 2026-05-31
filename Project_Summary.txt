@@ -1,0 +1,18 @@
+Project Name:
+AlgoVision
+
+Domain:
+Smart Logistics & Delivery Optimization
+
+Technologies:
+Python, Flask, HTML, CSS, JavaScript
+
+Algorithms:
+Queue
+HashMap
+Array
+BST
+Heap
+Graph
+Dijkstra
+Dynamic Programming
